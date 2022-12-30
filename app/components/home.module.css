@@ -4,8 +4,6 @@
     height: 100vh;
     width: 100%;
     padding: 10em;
-    /*Padding-top tiene que ser de la medida del header */
-    padding-top: 7.5em;
     color: white;
     align-items: flex-end;
     background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 60%, rgba(0, 0, 0, .9)), url("../../public/home_bg.png");
@@ -25,7 +23,11 @@
 
 .arrowContainer{
     display: flex;
+    height: 100%;
     width: 100%;
     justify-content: center;
-    margin-top: 23em;
+    margin-top: 25em;
 }
+
+/*
+@media screen and (){}*/

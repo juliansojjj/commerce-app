@@ -10,6 +10,11 @@
     padding-right: 9em;
     position: fixed;
     color: white;
+    /*
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    */
+    z-index:1000;
 }
 .header a{
     text-decoration: none;
@@ -18,6 +23,12 @@
 }
 .headerIcon{
     filter: invert(98%) sepia(1%) saturate(4%) hue-rotate(135deg) brightness(114%) contrast(100%);
+}
+
+.scrollDown{
+    background-color: rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(4px);
+    transition: all 1s;
 }
 
 .centerContainer{
