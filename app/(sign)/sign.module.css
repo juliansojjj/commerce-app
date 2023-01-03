@@ -1,0 +1,13 @@
+.container{
+    padding-top: 7.5em;
+    background-color: lightgrey;
+}
+
+.success{
+    position: absolute;
+    width: 15em;
+    height: 3em;
+    background-color: lightgray;
+    right: 0;
+    top: 0;
+}

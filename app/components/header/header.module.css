@@ -1,13 +1,14 @@
 .header{
     display: flex;
     width: 100%;
+    right: 0;
+    left: 0;
+    margin: auto;
     height: 7.5em;
     padding: 1em;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     box-sizing: border-box;
-    padding-left: 9em;
-    padding-right: 9em;
     position: fixed;
     color: white;
     /*
@@ -21,21 +22,46 @@
     color: white;
     font-size: 1.1em;
 }
-.headerIcon{
+.iconContainer{
+    width: fit-content;
+    height: fit-content;
+}
+.icon{
     filter: invert(98%) sepia(1%) saturate(4%) hue-rotate(135deg) brightness(114%) contrast(100%);
+    margin-right: 35em;
+    width: 1.3em;
+    height: fit-content;
+}
+.menu{
+    margin-left: 35em;
 }
 
-.scrollDown{
-    background-color: rgba(0, 0, 0, 0.15);
+.scrollContainer{
+    background-color: rgba(30, 30, 30, 0.15);
     backdrop-filter: blur(4px);
-    transition: all 1s;
+    width: fit-content;
+    padding: 0;
+    padding-left: 3em;
+    padding-right: 3em;
+    box-sizing: content-box;
+    right: 0;
+    left: 0;
+    top: 1.5em;
+    margin: auto;
+    height: 5em;
+    border-radius: 4em;
+    transition: background-color backdrop-filter width 1s;
 }
 
 .centerContainer{
-    width: 50%;
+    width: 43em;
     display: grid;
     grid-template-columns: repeat(3,1fr);
     justify-items: center;
+    position: absolute;
+    right: 0;
+    left: 0;
+    margin: auto;
 }
 
 .menuButton{

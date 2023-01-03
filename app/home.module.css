@@ -6,7 +6,9 @@
     padding: 10em;
     color: white;
     align-items: flex-end;
-    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 60%, rgba(0, 0, 0, .9)), url("../../public/home_bg.png");
+    background-image:   linear-gradient(to bottom, rgba(255, 255, 255, 0) 60%, rgba(0, 0, 0, .9)), 
+                        linear-gradient(to right, rgba(255, 255, 255, 0) 40%, rgba(0, 0, 0, .9)), 
+                        url("../public/home_bg.png");
     /*background-position-y: -7em;*/
     background-size: cover;
     background-repeat: no-repeat;

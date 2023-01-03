@@ -2,7 +2,7 @@
 import styles from './header.module.css'
 import { useState } from 'react';
 import Image from 'next/image';
-import Menu from '../../public/icons/menu.svg';
+import Menu from '../../../public/icons/menu.svg';
 
 export default function MenuButton(){
 
@@ -14,7 +14,7 @@ export default function MenuButton(){
 
     return(
         <button onClick={handleMenu} className={styles.menuButton}>
-            <Image src={Menu} alt='Menu' height={30}/>
+            <Image src={Menu} alt='Menu' width={35}/>
         </button>
     )
 }

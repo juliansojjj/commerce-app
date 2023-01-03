@@ -1,4 +1,4 @@
-import styles from './components/home.module.css';
+import styles from './home.module.css';
 import {Be_Vietnam_Pro} from '@next/font/google';
 import Image from 'next/image';
 import Logo from '../public/logo.svg'
@@ -22,7 +22,10 @@ export default function Home(){
                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos eaque, quasi architecto quae reprehenderit incidunt, voluptates, sequi at deleniti veritatis omnis aspernatur impedit ab soluta? Perferendis vel enim minus magni.</p>
                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos eaque, quasi architecto quae reprehenderit incidunt, voluptates, sequi at deleniti veritatis omnis aspernatur impedit ab soluta? Perferendis vel enim minus magni.</p>
                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos eaque, quasi architecto quae reprehenderit incidunt, voluptates, sequi at deleniti veritatis omnis aspernatur impedit ab soluta? Perferendis vel enim minus magni.</p>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos eaque, quasi architecto quae reprehenderit incidunt, voluptates, sequi at deleniti veritatis omnis aspernatur impedit ab soluta? Perferendis vel enim minus magni.</p><p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos eaque, quasi architecto quae reprehenderit incidunt, voluptates, sequi at deleniti veritatis omnis aspernatur impedit ab soluta? Perferendis vel enim minus magni.</p>
                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos eaque, quasi architecto quae reprehenderit incidunt, voluptates, sequi at deleniti veritatis omnis aspernatur impedit ab soluta? Perferendis vel enim minus magni.</p>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos eaque, quasi architecto quae reprehenderit incidunt, voluptates, sequi at deleniti veritatis omnis aspernatur impedit ab soluta? Perferendis vel enim minus magni.</p>
+                
             </section>
         </div>
     )
