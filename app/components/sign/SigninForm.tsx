@@ -1,75 +1,72 @@
 "use client"
 
-import { useState } from 'react';
+import { useForm} from 'react-hook-form';
 import styles from '../../(sign)/sign.module.css'
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import Cookies from 'universal-cookie';
 
 type User = {
     email?:string;
     password?:string;
 }
 
-export default function SignupForm() {
-    const [mail,setMail] = useState('')
-    const [pass,setPass] = useState('')
-    const [alert,setAlert] = useState('')
-    const [success,setSuccess] = useState('')
+type FormData = {
+    email?: string;
+    password?: string;
+}
+
+const signinUrl = 'http://localhost:8000/api/users/sign';
+
+export default function SigninForm() {
+    const {register, handleSubmit, formState: { errors }} = useForm<FormData>();
     const router = useRouter()
+    const [showError, setShowError] = useState('')
+    const cookies = new Cookies();
 
-    const handleSubmit = async(e:any)=>{
-        e.preventDefault();
-        // comprobaciones
-        if( !mail.trim() || !pass) {
-                setAlert('Complete los campos')
-            }
-        else{
-            let user: User = {}
-            user.email = mail;
-            user.password = pass;
-
-            await axios.post('http://localhost:8000/api/users/sign',user)
+    const onLogin = async(data:FormData)=>{
+           await axios.post(signinUrl,data)
             .then(info=>{
+                const token = info.data.token;
+                cookies.set('token', token, {path:'/'})
                 console.log(info)
-                setAlert('');
-                setSuccess('Se');
-                router.push('/');
             })
             .catch(err=>{
-                console.log(err);
+                setShowError(err.response.data.msg);
+                setTimeout(()=>setShowError(''),4000)
            });
-        }
     }
 
-    const handleChange = (e:any)=>{
-        const name = e.target.name
-        const input = e.target.value
-        if (name == 'mail'){
-            setMail(input)
-        }
-        if (name == 'pass'){
-            setPass(input)
-        }
-    }
-    
 
   return (
-            <form className={styles.container} onSubmit={handleSubmit}>
-                {success ? success : ''}
+            <form className={styles.container} onSubmit={handleSubmit(onLogin)} >
                 <div>
+                    <label>Mail</label>
                     <input type="mail"
-                    value={mail} name='mail'
-                    onChange={handleChange}
-                    placeholder='nombre@mail.com'/>
+                    {...register('email', 
+                        {required: 'Complete el mail',
+                        pattern: /^\S+@\S+$/i}
+                    )}
+                    placeholder='Email'/>
+                    <div>
+                        {errors.email ? errors.email.message : ''}
+                    </div>
                 </div>
                 <div>
+                    <label>Contraseña</label>
                     <input type="password"
-                    value={pass} name='pass'
-                    onChange={handleChange}
-                    placeholder='******'/>
+                    {...register('password',
+                        {required:'Complete la contraseña', 
+                        minLength:{value:6,message:'La contraseña debe tener como mínimo 6 caracteres'}}
+                    )}
+                    placeholder='Contraseña'/>
+                    <div>
+                        {errors.password ? errors.password.message : ''}
+                    </div>
                 </div>
+                <div>{showError}</div>
                 <button type='submit'>Enviar</button>
-                {alert ? alert : ''}
             </form>
   )
 }
