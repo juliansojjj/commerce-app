@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, Dispatch, useReducer } from "react";
+import { createContext, useContext, Dispatch, useReducer, ReactNode } from "react";
 import { AuthReducer } from "./authReducer";
 
 export type User = {
@@ -11,13 +11,19 @@ export type User = {
 type ContextProps = {
     isLoggedIn: boolean;
     user?: User;
+    login:(user:User)=>void
 }
 export type AuthState = {
     isLoggedIn: boolean;
     user?: User;
+    
 }
 
-const initialState : AuthState= {
+type ProviderProps = {
+    children:ReactNode;
+}
+
+export const initialState : AuthState= {
     isLoggedIn: false,
     user: undefined
 }
@@ -26,14 +32,25 @@ const initialState : AuthState= {
 
 const AuthContext = createContext<ContextProps>({
     isLoggedIn:false,
-    user:undefined
+    user:undefined,
+    login:()=>{}
 });
 
-export const AuthContextProvider = ({ children }:any) => {
-    const [state, dispatch] = useReducer(AuthReducer, initialState)
+export const AuthContextProvider = ({ children }:ProviderProps) => {
+    const [state, dispatch] = useReducer(AuthReducer, initialState);
+
+    const login = (user:User)=>{
+        dispatch({type:'Login',payload:user})
+    }
+
+    const value = {
+        isLoggedIn:state.isLoggedIn,
+        user:state.user,
+        login
+    }
     
     return (
-        <AuthContext.Provider value={{...state}}>
+        <AuthContext.Provider value={value}>
             {children}
         </AuthContext.Provider>
     )

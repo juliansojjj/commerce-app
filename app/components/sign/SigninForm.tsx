@@ -5,6 +5,7 @@ import styles from '../../(sign)/sign.module.css'
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { useAuthContext } from '../../Context/AuthStore';
 import Cookies from 'universal-cookie';
 
 type User = {
@@ -24,13 +25,21 @@ export default function SigninForm() {
     const router = useRouter()
     const [showError, setShowError] = useState('')
     const cookies = new Cookies();
+    const {login, isLoggedIn} = useAuthContext();
 
     const onLogin = async(data:FormData)=>{
            await axios.post(signinUrl,data)
             .then(info=>{
                 const token = info.data.token;
-                cookies.set('token', token, {path:'/'})
+                const user = info.data.resUser;
                 console.log(info)
+                if(!isLoggedIn){
+                    cookies.set('token', token, {path:'/'})
+                    login(user)
+                }
+                
+                
+                
             })
             .catch(err=>{
                 setShowError(err.response.data.msg);
