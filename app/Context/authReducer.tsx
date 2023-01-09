@@ -1,7 +1,7 @@
 "use client"
 
-import { AuthState } from "./AuthStore"
-import { User } from "./AuthStore"
+import { AuthState } from "../../interfaces/index"
+import { User } from "../../interfaces/index"
 
 type AuthAction = 
 | { type:'Login', payload: User}

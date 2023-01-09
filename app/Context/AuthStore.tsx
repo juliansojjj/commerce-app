@@ -1,34 +1,16 @@
 "use client";
 
-import { createContext, useContext, Dispatch, useReducer, ReactNode } from "react";
+import { createContext, useContext, useReducer, ReactNode, useEffect } from "react";
 import { AuthReducer } from "./authReducer";
+import {AuthProps, AuthState, Children, ContextProps, ProviderProps, User} from '../../interfaces/index'
+import {useSession} from 'next-auth/react'
 
-export type User = {
-    name:string;
-    email:string;
-    role:string;
-}
-type ContextProps = {
-    isLoggedIn: boolean;
-    user?: User;
-    login:(user:User)=>void
-}
-export type AuthState = {
-    isLoggedIn: boolean;
-    user?: User;
-    
-}
 
-type ProviderProps = {
-    children:ReactNode;
-}
 
 export const initialState : AuthState= {
     isLoggedIn: false,
     user: undefined
 }
-
-
 
 const AuthContext = createContext<ContextProps>({
     isLoggedIn:false,
@@ -36,8 +18,18 @@ const AuthContext = createContext<ContextProps>({
     login:()=>{}
 });
 
-export const AuthContextProvider = ({ children }:ProviderProps) => {
+export const AuthContextProvider = ({ children }:Children) => {
     const [state, dispatch] = useReducer(AuthReducer, initialState);
+    const {data, status} = useSession();
+
+    useEffect(()=>{
+        if(status === 'authenticated'){
+            //dispatch({type:'Login',payload:data?.user as User})
+        }
+    },[]);
+
+
+    
 
     const login = (user:User)=>{
         dispatch({type:'Login',payload:user})
@@ -50,9 +42,9 @@ export const AuthContextProvider = ({ children }:ProviderProps) => {
     }
     
     return (
-        <AuthContext.Provider value={value}>
-            {children}
-        </AuthContext.Provider>
+            <AuthContext.Provider value={value}>
+                {children}
+            </AuthContext.Provider>
     )
 };
 

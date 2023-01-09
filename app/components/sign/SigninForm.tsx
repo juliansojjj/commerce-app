@@ -6,45 +6,26 @@ import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useAuthContext } from '../../Context/AuthStore';
-import Cookies from 'universal-cookie';
-
-type User = {
-    email?:string;
-    password?:string;
-}
+import {signIn} from 'next-auth/react'
 
 type FormData = {
-    email?: string;
-    password?: string;
+    email: string;
+    password: string;
 }
 
-const signinUrl = 'http://localhost:8000/api/users/sign';
-
-export default function SigninForm() {
+export default  function SigninForm() {
     const {register, handleSubmit, formState: { errors }} = useForm<FormData>();
     const router = useRouter()
     const [showError, setShowError] = useState('')
-    const cookies = new Cookies();
     const {login, isLoggedIn} = useAuthContext();
 
     const onLogin = async(data:FormData)=>{
-           await axios.post(signinUrl,data)
-            .then(info=>{
-                const token = info.data.token;
-                const user = info.data.resUser;
-                console.log(info)
-                if(!isLoggedIn){
-                    cookies.set('token', token, {path:'/'})
-                    login(user)
-                }
-                
-                
-                
-            })
-            .catch(err=>{
-                setShowError(err.response.data.msg);
-                setTimeout(()=>setShowError(''),4000)
-           });
+        const result = await signIn('credentials',{
+            email:data.email,
+            password:data.password,
+            redirect:false}
+            );
+        console.log(result)
     }
 
 
