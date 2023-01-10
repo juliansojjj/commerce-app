@@ -20,9 +20,9 @@ export const authOptions : NextAuthOptions = {
                 
                 const res = await axios.post(signinUrl,{email,password});
                 const user : any= await res;
-                
+                //console.log(user)
                 if (user){
-                    return user
+                    return user.data
                 }
                 else return null
               
@@ -37,7 +37,33 @@ export const authOptions : NextAuthOptions = {
 
    pages:{
     signIn:'/signin'
-   }
+   },
+
+   callbacks:{
+     async jwt({token,account,user}){
+        if(account){
+            token.accessToken = account.access_token;
+
+            switch(account.type){
+                case 'oauth':
+                break;
+
+                case 'credentials':
+                    token.user = user;
+                break;
+            }
+        }
+
+        return token
+    },
+    async session({session,token,user}){
+        //console.log({session,token,user})
+        session.token = token.accessToken;
+        session.user = token.user as any;
+
+        return session
+    }
+   },
 
   }
 export default NextAuth(authOptions)

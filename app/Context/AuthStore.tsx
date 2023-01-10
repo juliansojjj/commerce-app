@@ -22,18 +22,16 @@ export const AuthContextProvider = ({ children }:Children) => {
     const [state, dispatch] = useReducer(AuthReducer, initialState);
     const {data, status} = useSession();
 
-    useEffect(()=>{
-        if(status === 'authenticated'){
-            //dispatch({type:'Login',payload:data?.user as User})
-        }
-    },[]);
-
-
-    
-
     const login = (user:User)=>{
         dispatch({type:'Login',payload:user})
     }
+
+    useEffect(()=>{
+        if(status === 'authenticated'){
+            dispatch({type:'Login', payload:data.user as User})
+            console.log(data)
+        }
+    },[status])
 
     const value = {
         isLoggedIn:state.isLoggedIn,
