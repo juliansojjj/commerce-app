@@ -28,35 +28,43 @@ export default  function SigninForm() {
         console.log(result)
     }
 
+    const providerLogin = async ()=>{
+        const result = await signIn('google', { callbackUrl: '/products' });
+        console.log(result)
+    }
+
 
   return (
-            <form className={styles.container} onSubmit={handleSubmit(onLogin)} >
-                <div>
-                    <label>Mail</label>
-                    <input type="mail"
-                    {...register('email', 
-                        {required: 'Complete el mail',
-                        pattern: /^\S+@\S+$/i}
-                    )}
-                    placeholder='Email'/>
+            <>
+                <form className={styles.container} onSubmit={handleSubmit(onLogin)} >
                     <div>
-                        {errors.email ? errors.email.message : ''}
+                        <label>Mail</label>
+                        <input type="mail"
+                        {...register('email', 
+                            {required: 'Complete el mail',
+                            pattern: /^\S+@\S+$/i}
+                        )}
+                        placeholder='Email'/>
+                        <div>
+                            {errors.email ? errors.email.message : ''}
+                        </div>
                     </div>
-                </div>
-                <div>
-                    <label>Contraseña</label>
-                    <input type="password"
-                    {...register('password',
-                        {required:'Complete la contraseña', 
-                        minLength:{value:6,message:'La contraseña debe tener como mínimo 6 caracteres'}}
-                    )}
-                    placeholder='Contraseña'/>
                     <div>
-                        {errors.password ? errors.password.message : ''}
+                        <label>Contraseña</label>
+                        <input type="password"
+                        {...register('password',
+                            {required:'Complete la contraseña', 
+                            minLength:{value:6,message:'La contraseña debe tener como mínimo 6 caracteres'}}
+                        )}
+                        placeholder='Contraseña'/>
+                        <div>
+                            {errors.password ? errors.password.message : ''}
+                        </div>
                     </div>
-                </div>
-                <div>{showError}</div>
-                <button type='submit'>Enviar</button>
-            </form>
+                    <div>{showError}</div>
+                    <button type='submit'>Enviar</button>
+                </form>
+                <button onClick={providerLogin}>Iniciar sesión con google</button>
+            </>
   )
 }

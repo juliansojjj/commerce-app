@@ -17,7 +17,7 @@ export default function Menu({closeMenu}){
             </button>
             {user ? 
             <div>
-                <div>{user.name}</div>
+                <Link href='/profile'>{user.name}</Link>
                 <div>carrito</div>
             </div>
             : 

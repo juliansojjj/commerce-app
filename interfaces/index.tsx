@@ -12,6 +12,7 @@ export type ContextProps = {
     isLoggedIn: boolean;
     user?: User;
     login:(user:User)=>void
+    logout:()=>void
 }
 
 export type AuthState = {

@@ -47,7 +47,9 @@ export default function Header(){
                 <MenuDisplay closeMenu={closeMenu}/>
             : ''}
 
-            {}
+            {onMenu ? 
+                <div className={styles.blackScreen} ></div>
+            : ''}
 
             <div className={`${styles.header} ${scroll ? `${styles.scrollContainer}` : ''}`}>
                 <Link href='/' className={styles.iconContainer}>

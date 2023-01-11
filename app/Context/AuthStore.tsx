@@ -3,7 +3,8 @@
 import { createContext, useContext, useReducer, ReactNode, useEffect } from "react";
 import { AuthReducer } from "./authReducer";
 import {AuthProps, AuthState, Children, ContextProps, ProviderProps, User} from '../../interfaces/index'
-import {useSession} from 'next-auth/react'
+import {useSession, signOut} from 'next-auth/react'
+
 
 
 
@@ -15,7 +16,8 @@ export const initialState : AuthState= {
 const AuthContext = createContext<ContextProps>({
     isLoggedIn:false,
     user:undefined,
-    login:()=>{}
+    login:()=>{},
+    logout:()=>{}
 });
 
 export const AuthContextProvider = ({ children }:Children) => {
@@ -24,6 +26,11 @@ export const AuthContextProvider = ({ children }:Children) => {
 
     const login = (user:User)=>{
         dispatch({type:'Login',payload:user})
+    }
+
+    const logout = ()=>{
+        dispatch({type:'Logout'});
+        signOut();
     }
 
     useEffect(()=>{
@@ -36,7 +43,8 @@ export const AuthContextProvider = ({ children }:Children) => {
     const value = {
         isLoggedIn:state.isLoggedIn,
         user:state.user,
-        login
+        login,
+        logout
     }
     
     return (

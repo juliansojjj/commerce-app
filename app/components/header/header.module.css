@@ -72,3 +72,11 @@
 .menuButton:hover{
     cursor: pointer;
 }
+
+.blackScreen{
+    z-index: 1050;
+    background-color: rgba(0, 0, 0, 0.35);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}

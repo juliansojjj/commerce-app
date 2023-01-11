@@ -14,11 +14,9 @@ export const authOptions : NextAuthOptions = {
             type:'credentials',
             credentials: {},
             async authorize(credentials, req) {
-                const signinUrl = 'http://localhost:8000/api/users/sign';
-                
                 const {email, password} = credentials as Credentials;
                 
-                const res = await axios.post(signinUrl,{email,password});
+                const res = await axios.post('http://localhost:8000/api/users/sign',{email,password});
                 const user : any= await res;
                 //console.log(user)
                 if (user){
@@ -27,6 +25,10 @@ export const authOptions : NextAuthOptions = {
                 else return null
               
             }
+          }),
+          GoogleProvider({
+            clientId: process.env.GOOGLE_CLIENT_ID,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET
           })
    ],
 
@@ -39,6 +41,7 @@ export const authOptions : NextAuthOptions = {
     signIn:'/signin'
    },
 
+
    callbacks:{
      async jwt({token,account,user}){
         if(account){
@@ -46,6 +49,10 @@ export const authOptions : NextAuthOptions = {
 
             switch(account.type){
                 case 'oauth':
+                    token.user = await axios.post('http://localhost:8000/api/users/oAuthSign',{
+                        name: user?.name, 
+                        email: user?.email});
+                
                 break;
 
                 case 'credentials':
