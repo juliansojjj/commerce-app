@@ -30,7 +30,7 @@ export const AuthContextProvider = ({ children }:Children) => {
 
     const logout = ()=>{
         dispatch({type:'Logout'});
-        signOut();
+        signOut({redirect:true, callbackUrl:'/'});
     }
 
     useEffect(()=>{

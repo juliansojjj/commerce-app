@@ -8,12 +8,11 @@
     display: flex;
     flex-direction: column;
     background-color: white;
+    animation-name: menuSlide;
+    animation-duration: 0.3s;
 }
 
-.closeButton{
-    position: absolute;
-    border: none;
-    background: none;
-    filter: invert(98%) sepia(1%) saturate(4%) hue-rotate(135deg) brightness(114%) contrast(100%);
-    left: -3.5em;
+@keyframes menuSlide{
+    0%  {right: -20em}
+    100%{right: 0}
 }

@@ -12,9 +12,6 @@ export default function Menu({closeMenu}){
 
     return(
         <div className={styles.container}>
-            <button onClick={closeMenu} className={styles.closeButton}>
-                <Image src={Close} alt='Menu' width={35}/>
-            </button>
             {user ? 
             <div>
                 <Link href='/profile'>{user.name}</Link>

@@ -58,19 +58,19 @@
     display: grid;
     grid-template-columns: repeat(3,1fr);
     justify-items: center;
+    align-items: center;
     position: absolute;
     right: 0;
     left: 0;
     margin: auto;
 }
-
-.menuButton{
-    text-decoration: none;
-    border: none;
-    background: none;
+.productsLink{
+    background-color: white;
+    border-radius: .5em;
+    padding: .5em;
 }
-.menuButton:hover{
-    cursor: pointer;
+.productsLink div{
+    color: black;
 }
 
 .blackScreen{

@@ -28,8 +28,9 @@ export default  function SigninForm({url}) {
     }
 
     const providerLogin = async (provider, callback)=>{
-        await signIn(provider);
-        //console.log(result)
+        await signIn(provider,{
+            callbackUrl:`${callback}`
+        });
     }
 
     useEffect(()=>{

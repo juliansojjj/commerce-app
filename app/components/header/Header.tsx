@@ -7,7 +7,7 @@ import Link from 'next/link'
 import {Be_Vietnam_Pro} from '@next/font/google';
 import Image from 'next/image';
 import Icon from '../../../public/icon.svg'
-import Menu from '../../../public/icons/menu.svg';
+import {MenuRounded as MenuIcon} from '@mui/icons-material';
 import MenuDisplay from '../menu/Menu'
 
 const vietnamPro = Be_Vietnam_Pro({weight:'400'});
@@ -52,7 +52,7 @@ export default function Header(){
             : ''}
 
             {onMenu ? 
-                <div className={styles.blackScreen} ></div>
+                <div className={styles.blackScreen} onClick={closeMenu} ></div>
             : ''}
 
             <div className={`${styles.header} ${scroll ? `${styles.scrollContainer}` : ''}`}>
@@ -61,13 +61,13 @@ export default function Header(){
                 </Link>
                 <div className={`${styles.centerContainer} ${vietnamPro.className}`}>
                     <Link href='/about'>Nosotros</Link>
-                    <Link href='/products'>Productos</Link>
+                    <Link href='/products' className={styles.productsLink}>
+                        <div>Productos</div>
+                    </Link>
                     <Link href='/contact'>Contacto</Link>
                 </div>
                 <div className={styles.menu}>
-                    <button onClick={handleMenu} className={styles.menuButton}>
-                        <Image src={Menu} alt='Menu' width={35}/>
-                    </button>
+                    <MenuIcon onClick={handleMenu} cursor='pointer' fontSize='large'/>
                 </div>
             </div>
         </>
