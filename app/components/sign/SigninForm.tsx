@@ -2,36 +2,42 @@
 
 import { useForm} from 'react-hook-form';
 import styles from '../../(sign)/sign.module.css'
-import axios from 'axios';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAuthContext } from '../../Context/AuthStore';
-import {signIn} from 'next-auth/react'
+import {signIn, getProviders, getSession} from 'next-auth/react'
+import { redirect } from 'next/navigation';
 
 type FormData = {
     email: string;
     password: string;
 }
 
-export default  function SigninForm() {
+export default  function SigninForm({url}) {
     const {register, handleSubmit, formState: { errors }} = useForm<FormData>();
-    const router = useRouter()
     const [showError, setShowError] = useState('')
+    const [providers, setProviders] = useState<any>()
     const {login, isLoggedIn} = useAuthContext();
 
     const onLogin = async(data:FormData)=>{
         const result = await signIn('credentials',{
             email:data.email,
             password:data.password,
-            redirect:false}
+            redirect:true}
             );
-        console.log(result)
     }
 
-    const providerLogin = async ()=>{
-        const result = await signIn('google', { callbackUrl: '/products' });
-        console.log(result)
+    const providerLogin = async (provider, callback)=>{
+        await signIn(provider);
+        //console.log(result)
     }
+
+    useEffect(()=>{
+        getProviders()
+        .then(info=>{
+            setProviders(info)
+        })
+        .catch()
+    },[])
 
 
   return (
@@ -64,7 +70,14 @@ export default  function SigninForm() {
                     <div>{showError}</div>
                     <button type='submit'>Enviar</button>
                 </form>
-                <button onClick={providerLogin}>Iniciar sesión con google</button>
+                {providers ?
+                Object.values(providers).map((item:any)=>{
+                    if(item.id != 'credentials')
+                    return(
+                        <button key={item.id} onClick={()=>providerLogin(item.name,item.callbackUrl)}>Iniciar sesión con {item.name}</button>
+                    )
+                })
+                : ''}
             </>
   )
 }

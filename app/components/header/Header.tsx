@@ -25,8 +25,12 @@ export default function Header(){
             setScroll(false);
         }
     }
+
+    if (typeof window !== "undefined") {
+        window.addEventListener('scroll',changeBackground);
+      }
     
-    window.addEventListener('scroll',changeBackground);
+    
     
     const handleMenu = (e:any)=>{
         if(!onMenu){
