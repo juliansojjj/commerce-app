@@ -8,7 +8,6 @@ import { getToken } from "next-auth/jwt"
     req, 
     secret:process.env.NEXTAUTH_SECRET,
     raw:true})
-  console.log(session)
 
   if (req.nextUrl.pathname.startsWith('/signin')) {
     if(session){

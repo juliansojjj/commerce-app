@@ -17,7 +17,7 @@ export const authOptions : NextAuthOptions = {
                 const {email, password} = credentials as Credentials;
                 
                 const res = await axios.post('http://localhost:8000/api/users/sign',{email,password});
-                const user : any= await res;
+                const user : any = await res;
                 if (user){
                     return user.data
                 }

@@ -22,8 +22,9 @@ export default  function SigninForm({url}) {
         const result = await signIn('credentials',{
             email:data.email,
             password:data.password,
-            redirect:true}
-            );
+            redirect:true,
+            callbackUrl:`${url ? url : '/products'}`
+        });
     }
 
     const providerLogin = async (provider, callback)=>{
