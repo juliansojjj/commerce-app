@@ -1,16 +1,14 @@
 "use client";
 //no pude encontrar modo de hacerlo dinámico sin hacerlo del cliente
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './header.module.css'
 import Link from 'next/link'
-import {Be_Vietnam_Pro} from '@next/font/google';
 import Image from 'next/image';
 import Icon from '../../../public/icon.svg'
-import {MenuRounded as MenuIcon} from '@mui/icons-material';
+import MenuRounded from '@mui/icons-material/Menu';
 import MenuDisplay from '../menu/Menu'
-
-const vietnamPro = Be_Vietnam_Pro({weight:'400'});
+import { usePathname } from 'next/navigation';
 
 
 export default function Header(){
@@ -30,8 +28,7 @@ export default function Header(){
         window.addEventListener('scroll',changeBackground);
       }
     
-    
-    
+    // boton menu
     const handleMenu = (e:any)=>{
         if(!onMenu){
             setOnMenu(true);
@@ -41,6 +38,7 @@ export default function Header(){
         }
     }
 
+    // desde menu o pantalla negra
     const closeMenu = ()=>{
         setOnMenu(false);
     }
@@ -59,15 +57,15 @@ export default function Header(){
                 <Link href='/' className={styles.iconContainer}>
                     <Image src={Icon} alt='Flagon Icon' className={`${styles.icon} ${scroll ? `${styles.scrollIcon}` : ''}`}/>
                 </Link>
-                <div className={`${styles.centerContainer} ${vietnamPro.className}`}>
+                <div className={styles.centerContainer}>
                     <Link href='/about'>Nosotros</Link>
-                    <Link href='/products' className={styles.productsLink}>
+                    <Link href='/shop' className={styles.productsLink}>
                         <div>Productos</div>
                     </Link>
                     <Link href='/contact'>Contacto</Link>
                 </div>
                 <div className={styles.menu}>
-                    <MenuIcon onClick={handleMenu} cursor='pointer' fontSize='large'/>
+                    <MenuRounded onClick={handleMenu} cursor='pointer' fontSize='large'/>
                 </div>
             </div>
         </>
