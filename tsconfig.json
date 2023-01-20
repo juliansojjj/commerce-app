@@ -30,7 +30,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-  ],
+, "app/products/[id]/loading.tsx"  ],
   "exclude": [
     "node_modules"
   ]

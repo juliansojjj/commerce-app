@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Dashboard from '../components/dashboard/Dashboard';
 
 const fetchProducts = async()=>{
-    const res = await fetch("http://localhost:8000/api/products");
+    const res = await fetch("http://localhost:8000/api/products", { next: { revalidate: 120 } });
     return res.json()
 }
 
