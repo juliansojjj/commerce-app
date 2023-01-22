@@ -13,19 +13,21 @@
 
 .imageContainer{
     width: 60%;
+    height: 50em;
     box-sizing: border-box;
-    object-fit: scale-down;
+    object-fit: cover;
+    padding-right: 1em;
 }
 .imageContainer img{
     width: 100%;
-    max-height: 50em;
+    height: 100%;
     box-sizing: border-box;
-    object-fit: scale-down;
-    padding-right: 1em;
+    object-fit: cover;
 }
 
 .info{
     display: flex;
+    height: 20em;
     flex-direction: column;
     width: 40%;
     padding-left: 1em;
@@ -45,7 +47,7 @@
 
 /* FORM */
 .formContainer{
-    padding-top: 1em;
+    margin-top: 3em;
     display: flex;
     width: 100%;
     justify-content: space-between;
@@ -55,6 +57,7 @@
     min-width: fit-content;
     max-width: 20em;
     text-decoration: none;
+    height: fit-content;
     border: none;
     display: flex;
     align-items: center;
@@ -71,16 +74,31 @@
 }
 
 .input{
-   width: 4em; 
+   width: fit-content; 
    display: flex;
    align-items: center;
    border: 1px solid grey;
+   border-radius: .3em;
+}
+.numberContainer{
+    padding: .3em;
+    padding-left: .6em;
 }
 .arrowsContainer{
     display: flex;
     flex-direction: column;
+    padding-right: .3em;
+}
+
+.arrow{
+    height: 1em;
+}
+.arrow:active{
+    transform: scale(0.98);
 }
 
 .amountError{
-    color: red;
+    padding-top: .3em;
+    font-size: .6em;
+    color: #C70000;
 }

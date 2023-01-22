@@ -40,3 +40,17 @@ export type Credentials = {
     callbackUrl: string;
     json: boolean;
   }
+
+export type Product = {
+    id: number;
+    name:string;
+    description:string;
+    price:number;
+    stock:number;
+    type:string;
+    measures:string;
+    image:string;
+    createdAt?:string;
+    updatedAt?:string;
+    serialNumber:string | number;
+}

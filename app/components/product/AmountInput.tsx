@@ -36,12 +36,12 @@ export default function AmountInput({stock}){
     return(
         <div className={styles.amountComponent}>
             <div className={styles.input}>
-                <div>
-                    {amount}
+                <div className={styles.numberContainer}>
+                    <div>{amount}</div>
                 </div>
                 <div className={styles.arrowsContainer}>
-                    <ArrowUp onClick={()=>handleAmount('up')} />
-                    <ArrowDown onClick={()=>handleAmount('down')} />
+                    <ArrowUp onClick={()=>handleAmount('up')} className={styles.arrow} />
+                    <ArrowDown onClick={()=>handleAmount('down')} className={styles.arrow}/>
                 </div>
             </div>
             <div className={styles.amountError}>
