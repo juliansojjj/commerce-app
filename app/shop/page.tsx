@@ -76,9 +76,10 @@ export default async function Shop() {
             <Link
               href={`/products/${item.name
                 .trim()
+                .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
                 .toLowerCase()
                 .split(" ")
-                .join("-")}--${item.type.trim().toLowerCase()}`}
+                .join("-")}--${item.type.trim().toLowerCase()}--${item.id}`}
               key={item.id}
               className={styles.productCard}
             >

@@ -4,7 +4,7 @@ import ShoppingCart from '@mui/icons-material/ShoppingCartOutlined';
 import FavoriteEmpty from '@mui/icons-material/FavoriteBorderOutlined';
 import FavoriteFilled from '@mui/icons-material/FavoriteOutlined';
 
-import styles from '../../products/[id]/products.module.css'
+import styles from '../../products/[name]/products.module.css'
 import AmountInput from './AmountInput';
 import {Be_Vietnam_Pro} from '@next/font/google';
 

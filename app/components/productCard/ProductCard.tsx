@@ -32,9 +32,10 @@ export default function ProductCard({ data }) {
         <Link
               href={`/products/${data[value].name
                 .trim()
+                .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
                 .toLowerCase()
                 .split(" ")
-                .join("-")}--${data[value].type.trim().toLowerCase()}`} 
+                .join("-")}--${data[value].type.trim().toLowerCase()}--${data[value].id}`}
                 className={styles.productCard}
                 >
             <img

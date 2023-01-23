@@ -76,7 +76,7 @@
     justify-content: space-evenly;
     z-index: 100;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.25);
+    /*background-color: rgba(0, 0, 0, 0.25);*/
     padding: .2em;
 }
 
@@ -84,11 +84,15 @@
     width: 2em;
     height: 2em;
     box-sizing: border-box;
+    border-radius: 1em;
+    object-fit: cover;
 }
 .itemContainer img{
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: .5em;
+    filter: opacity(75%);
 }
 .itemContainer:hover{
     cursor: pointer;

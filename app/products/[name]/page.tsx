@@ -1,14 +1,20 @@
 import styles from './products.module.css'
 import ProductForm from '../../components/product/ProductForm'
 
-const fetchData = async(id)=>{
-    const res = await fetch(`http://localhost:8000/api/products/${id}`, { cache: 'no-store' });
+const fetchData = async(type:string,id:number)=>{
+    //const res = await fetch(`http://localhost:8000/api/products/${id}`, { cache: 'no-store' });
+    const res = await fetch(`http://localhost:8000/api/products/model/${type}-${id}`, { cache: 'no-store' });
     //const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, { cache: 'no-store' });
     return res.json()
 }
 
 export default async function Product({params}){
-    const res = await fetchData(params.id)
+    const props = params.name.split('--')
+    const type = props[1]
+    const id = props[2]
+    console.log(type,id)
+    const res = await fetchData(type,id)
+    console.log(res)
     const item = res.product
 
     return(

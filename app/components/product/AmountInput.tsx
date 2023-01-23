@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from 'react';
-import styles from '../../products/[id]/products.module.css'
+import styles from '../../products/[name]/products.module.css'
 
 import ArrowUp from '@mui/icons-material/ArrowDropUpOutlined';
 import ArrowDown from '@mui/icons-material/ArrowDropDownOutlined';
