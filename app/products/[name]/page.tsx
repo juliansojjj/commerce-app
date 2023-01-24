@@ -11,10 +11,9 @@ const fetchData = async(type:string,id:number)=>{
 export default async function Product({params}){
     const props = params.name.split('--')
     const type = props[1]
-    const id = props[2]
-    console.log(type,id)
+    const id : number = props[2]
+
     const res = await fetchData(type,id)
-    console.log(res)
     const item = res.product
 
     return(
@@ -26,7 +25,7 @@ export default async function Product({params}){
             <div className={styles.info}>
                 <div className={styles.infoTitle}>{item.name}</div>
                 <div>${item.price}</div>
-                <ProductForm stock={item.stock}/>
+                <ProductForm stock={item.stock} itemId={id}/>
             </div>
         </div>  
     </div>
