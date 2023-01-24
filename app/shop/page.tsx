@@ -1,6 +1,7 @@
 import styles from "./shop.module.css";
 import Link from "next/link";
 import ProductCard from "../components/productCard/ProductCard";
+import FavoriteButton from "../components/product/FavoriteButton";
 
 
 const fetchProducts = async () => {
@@ -73,26 +74,31 @@ export default async function Shop() {
       {repo.map((item) => {
         if (!item.rep)
           return (
-            <Link
-              href={`/products/${item.name
-                .trim()
-                .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-                .toLowerCase()
-                .split(" ")
-                .join("-")}--${item.type.trim().toLowerCase()}--${item.id}`}
-              key={item.id}
-              className={styles.productCard}
-            >
-              <img
-                src={item.image}
-                alt={item.name}
-                className={styles.cardImage}
-              />
-              <div className={styles.textContainer}>
-                <div>{item.name}</div>
-                <div className={styles.price}>${item.price}</div>
+            <div className={styles.generalCard}>
+              <div className={styles.favoriteButton}>
+                <FavoriteButton itemId={item.id} />
               </div>
-            </Link>
+              <Link
+                href={`/products/${item.name
+                  .trim()
+                  .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+                  .toLowerCase()
+                  .split(" ")
+                  .join("-")}--${item.type.trim().toLowerCase()}--${item.id}`}
+                key={item.id}
+                className={styles.productCard}
+              >
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  className={styles.cardImage}
+                />
+                <div className={styles.textContainer}>
+                  <div>{item.name}</div>
+                  <div className={styles.price}>${item.price}</div>
+                </div>
+              </Link>
+            </div>
           );
         else if (item.rep) {
           return (<ProductCard data={item.repeat}/>);

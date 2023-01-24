@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Product } from "../../../interfaces";
 import Link from "next/link";
 import styles from "../../shop/shop.module.css";
+import FavoriteButton from "../product/FavoriteButton";
 
 export default function ProductCard({ data }) {
   const [value, setValue] = useState(0);
@@ -14,6 +15,9 @@ export default function ProductCard({ data }) {
 
   return (
     <div className={styles.generalCard}>
+        <div className={styles.favoriteButton}>
+                <FavoriteButton itemId={data[value].id} />
+              </div>
         <div className={styles.carrouselContainer}>
             {data.map((item: Product, i) => {
             if (i !== value) {

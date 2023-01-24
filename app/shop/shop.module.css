@@ -64,6 +64,13 @@
     transform: scale(0.96);
 }
 
+.favoriteButton{
+    position: absolute;
+    z-index: 100;
+    top: 1em;
+    right: 1em;
+}
+
 .generalCard{
     position: relative;
     height: 18em;

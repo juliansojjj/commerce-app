@@ -23,7 +23,7 @@ export default  function SigninForm({url}) {
             email:data.email,
             password:data.password,
             redirect:true,
-            callbackUrl:`${url ? url : '/products'}`
+            callbackUrl:`${url ? url : '/shop'}`
         });
     }
 

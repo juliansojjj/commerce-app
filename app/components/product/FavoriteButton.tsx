@@ -3,6 +3,7 @@
 import FavoriteEmpty from '@mui/icons-material/FavoriteBorderOutlined';
 import FavoriteFilled from '@mui/icons-material/FavoriteOutlined';
 //import {use} from 'react' no actual method to put a query without infinite loop
+import { useAuthContext } from '../../Context/AuthStore';
 import useSWR, { mutate } from 'swr'
 import axios from 'axios';
 
@@ -20,8 +21,8 @@ const deleteFavorite = async(userId, itemId)=>{
 }
 
 export default function FavoriteButton({itemId}:{itemId:number}){
-    const {data, error, mutate} = useSWR(`http://localhost:8000/api/favorites/item/2-${itemId}`,fetchFavorite)
-    console.log(data)
+    const {user} = useAuthContext()
+    const {data, error, mutate} = useSWR(`http://localhost:8000/api/favorites/item/${user?.id}-${itemId}`,fetchFavorite)
 
     const mutatePostFavorite = async(userId, itemId)=>{
 
@@ -34,9 +35,9 @@ export default function FavoriteButton({itemId}:{itemId:number}){
     }
 
     if(data == 'FALSE') return(
-        <FavoriteEmpty onClick={()=>mutatePostFavorite(2,itemId)} />
+        <FavoriteEmpty onClick={()=>mutatePostFavorite(user?.id,itemId)} />
     )
     else return(
-        <FavoriteFilled onClick={()=>mutateDeleteFavorite(2,itemId)} />
+        <FavoriteFilled onClick={()=>mutateDeleteFavorite(user?.id,itemId)} />
     )
 }
