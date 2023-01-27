@@ -61,7 +61,7 @@ export default function FavoritesList({containerType}:{containerType:'profile'|'
                             <div className={styles.profileGeneral} key={item.id} >
                                 <Link 
                                 className={styles.profileSon} 
-                                href={`/products/${item.asd
+                                href={`/products/${item.name
                                     .trim()
                                     .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
                                     .toLowerCase()

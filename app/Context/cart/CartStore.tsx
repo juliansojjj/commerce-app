@@ -14,16 +14,19 @@ export const initialState : CartState= {
 
 const CartContext = createContext<CartContextProps>({
     items:undefined,
-    addProduct:()=>{},
-    removeProduct:()=>{}
+    addProduct({ amount, product }) {},
 });
 
 export const CartContextProvider = ({ children }:Children) => {
     const [state, dispatch] = useReducer(CartReducer, initialState);
     const {data, status} = useSession();
 
-    const addProduct = ({amount,productId}:Item)=>{
-        dispatch({type:'addProduct',payload:{amount,productId}})
+    const addProduct = ({amount,product}:Item)=>{
+        const check = state.items?.some(unit=>unit.product === product);
+        if(!check) dispatch({type:'addNewProduct',payload:{amount,product}})
+        else {
+            dispatch({type:'addExistingProduct',payload:{amount, product}})
+        }
         // logica de db acá
     }
 
@@ -36,8 +39,7 @@ export const CartContextProvider = ({ children }:Children) => {
 
     const value = {
         items:state.items,
-        addProduct,
-        removeProduct
+        addProduct
     }
     
     return (

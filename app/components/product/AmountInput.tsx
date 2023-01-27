@@ -6,8 +6,8 @@ import styles from '../../products/[name]/products.module.css'
 import ArrowUp from '@mui/icons-material/ArrowDropUpOutlined';
 import ArrowDown from '@mui/icons-material/ArrowDropDownOutlined';
 
-export default function AmountInput({stock}){
-    const [amount, setAmount] = useState(1)
+export default function AmountInput({stock, setAmount, amount}){
+    
     const [alert, setAlert] = useState('')
 
     const handleAmount = (type:string)=>{
@@ -25,7 +25,7 @@ export default function AmountInput({stock}){
         }
         if(type === 'down'){
             if(amount - 1 === 0){
-                setAlert('El mínimo de compra es 1 unidad')
+                return
             }
             else{
                 setAmount(amount - 1);

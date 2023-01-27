@@ -25,12 +25,10 @@ export default function FavoriteButton({itemId}:{itemId:number}){
     const {data, error, mutate} = useSWR(`http://localhost:8000/api/favorites/item/${user?.id}-${itemId}`,fetchFavorite)
 
     const mutatePostFavorite = async(userId, itemId)=>{
-
         await mutate(postFavorite(userId, itemId))
     }
 
     const mutateDeleteFavorite = async(userId, itemId)=>{
-
         await mutate(deleteFavorite(userId, itemId))
     }
 

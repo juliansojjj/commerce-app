@@ -25,7 +25,7 @@ export default async function Product({params}){
             <div className={styles.info}>
                 <div className={styles.infoTitle}>{item.name}</div>
                 <div>${item.price}</div>
-                <ProductForm stock={item.stock} itemId={id}/>
+                <ProductForm stock={item.stock} product={item}/>
             </div>
         </div>  
     </div>

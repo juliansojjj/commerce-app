@@ -6,6 +6,7 @@ import Link from 'next/link'
 import Image from 'next/image';
 import Close from '../../../public/icons/close.svg';
 import { useState } from 'react'
+import MenuCart from '../cart/MenuCart';
 
 export default function Menu({closeMenu}){
     const {user} = useAuthContext()
@@ -15,7 +16,7 @@ export default function Menu({closeMenu}){
             {user ? 
             <div>
                 <Link href='/profile'>{user.name}</Link>
-                <div>carrito</div>
+                <MenuCart />
             </div>
             : 
             <div> 
