@@ -1,0 +1,102 @@
+/* SKELETON */
+.profileSkeleton{
+    width: 100%;
+    height: 30em;
+    display: flex;
+    flex-direction: column;
+}
+.profileSkeletonSon{
+    margin-top: 1em;
+    width: 30em;
+    height: 5em;
+    border-radius: 1em;
+    background: linear-gradient(to left, #6d6d6d, #cecece);
+    background-size: 200%;
+    animation: gradient 4s ease infinite;
+    display: grid;
+    grid-template-columns: 20em 5em 5em;
+    align-items: center;
+    padding-left: 1em;
+    box-sizing: border-box;
+}
+.titleFall{
+    width: 10em;
+    height: 2em;
+    background: linear-gradient(to left, #9c9c9c, #ebebeb);
+    background-size: 200%;
+    animation: gradient 4s ease infinite;
+}
+.imgFall{
+    width: 4em;
+    height: 4em;
+    object-fit: cover;
+    border-radius: .5em;
+    background: linear-gradient(to left, #9c9c9c, #ebebeb);
+    background-size: 200%;
+    animation: gradient 4s ease infinite;
+}
+
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+/* PROFILE */
+.favoritesContainer{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+/*
+.profile{
+}
+.menu{
+}
+*/
+
+.profileGeneral{
+    width: fit-content;
+    position: relative;
+}
+.profileGeneral a{
+    text-decoration: none;
+    color: white;
+}
+.profileSon{
+    margin-top: 1em;
+    width: 30em;
+    height: 5em;
+    border-radius: 1em;
+    background-color: #1a1a1a;
+    display: grid;
+    grid-template-columns: 20em 5em 5em;
+    align-items: center;
+    padding-left: 1em;
+    box-sizing: border-box;
+}
+.profileSon img{
+    width: 4em;
+    height: 4em;
+    object-fit: cover;
+    border-radius: .5em;
+}
+
+.favoriteButton{
+    position: absolute;
+    right: 2em;
+    top: 2.75em;
+}
+
+.error{
+    color: red;
+}

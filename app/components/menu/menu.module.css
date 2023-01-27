@@ -8,11 +8,11 @@
     display: flex;
     flex-direction: column;
     background-color: white;
-    animation-name: menuSlide;
+    animation-name: menuSlideIn;
     animation-duration: 0.3s;
 }
 
-@keyframes menuSlide{
+@keyframes menuSlideIn{
     0%  {right: -20em}
     100%{right: 0}
 }

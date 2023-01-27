@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 
 
-
+// auth
 export type User = {
     id:number;
     name:string;
@@ -9,7 +9,7 @@ export type User = {
     role:string;
 }
 
-export type ContextProps = {
+export type AuthContextProps = {
     isLoggedIn: boolean;
     user?: User;
     login:(user:User)=>void
@@ -41,6 +41,8 @@ export type Credentials = {
     json: boolean;
   }
 
+// -------------
+
 export type Product = {
     id: number;
     name:string;
@@ -53,4 +55,21 @@ export type Product = {
     createdAt?:string;
     updatedAt?:string;
     serialNumber:string | number;
+}
+
+// Cart 
+
+export type Item = {
+    amount:number;
+    productId:number;
+}
+
+export type CartState = {
+    items?:Item[];
+}
+
+export type CartContextProps = {
+    items?:Item[];
+    addProduct:(productId)=>void
+    removeProduct:(productId)=>void
 }

@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useReducer, ReactNode, useEffect } from "react";
 import { AuthReducer } from "./authReducer";
-import {AuthProps, AuthState, Children, ContextProps, ProviderProps, User} from '../../interfaces/index'
+import {AuthProps, AuthState, Children, AuthContextProps, ProviderProps, User} from '../../interfaces/index'
 import {useSession, signOut} from 'next-auth/react'
 
 
@@ -13,7 +13,7 @@ export const initialState : AuthState= {
     user: undefined
 }
 
-const AuthContext = createContext<ContextProps>({
+const AuthContext = createContext<AuthContextProps>({
     isLoggedIn:false,
     user:undefined,
     login:()=>{},
