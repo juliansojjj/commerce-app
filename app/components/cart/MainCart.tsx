@@ -2,12 +2,12 @@
 
 import { useCartContext } from '../../Context/cart/CartStore';
 import { Item } from '../../../interfaces/index';
-import styles from '../menu/menu.module.css'
+import styles from '../../cart/cart.module.css'
 import DeleteIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import AmountInput from '../product/AmountInput';
 import Link from 'next/link';
 
-export default function MenuCart(){
+export default function MainCart(){
     const {items, removeProduct} = useCartContext() 
     console.log(items)
 

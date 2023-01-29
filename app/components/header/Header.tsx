@@ -9,11 +9,14 @@ import Icon from '../../../public/icon.svg'
 import MenuRounded from '@mui/icons-material/Menu';
 import MenuDisplay from '../menu/Menu'
 import { usePathname } from 'next/navigation';
+import { useCartContext } from '../../Context/cart/CartStore';
 
 
 export default function Header(){
     const [scroll, setScroll] = useState(false);
     const [onMenu,setOnMenu] = useState(false)
+    const [closeAnimation,setCloseAnimation] = useState(false)
+    const {items, removeProduct} = useCartContext() 
 
     const changeBackground = ()=>{
         if (window.scrollY > 0){
@@ -31,6 +34,7 @@ export default function Header(){
     // boton menu
     const handleMenu = (e:any)=>{
         if(!onMenu){
+            setCloseAnimation(false)
             setOnMenu(true);
         }
         else if (onMenu){
@@ -38,15 +42,18 @@ export default function Header(){
         }
     }
 
-    // desde menu o pantalla negra
     const closeMenu = ()=>{
-        setOnMenu(false);
+        setCloseAnimation(true)
+        setTimeout(()=>{
+            setOnMenu(false)
+        },400)
+        
     }
 
     return(
         <>
             {onMenu ? 
-                <MenuDisplay closeMenu={closeMenu}/>
+                <MenuDisplay closeAnimation={closeAnimation} closeMenu={closeMenu}/>
             : ''}
 
             {onMenu ? 

@@ -15,7 +15,7 @@ const vietnamPro = Be_Vietnam_Pro({weight:'400'});
 
 
 export default function ProductForm({stock, product}:{stock:number,product:Product}){
-    const {items, addProduct} = useCartContext() 
+    const {items, addProduct, removeProduct} = useCartContext() 
     const [amount, setAmount] = useState<number>(1)
     
     const handleProduct = ()=>{

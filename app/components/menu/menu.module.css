@@ -10,9 +10,112 @@
     background-color: white;
     animation-name: menuSlideIn;
     animation-duration: 0.3s;
+    animation-delay: 0s;
+    align-content: center;
+    align-items: center;
+}
+.container a{
+    text-decoration: none;
+}
+
+.menuClosed{
+    animation-name: menuSlideOut;
+    animation-duration: .41s;
 }
 
 @keyframes menuSlideIn{
     0%  {right: -20em}
     100%{right: 0}
+}
+@keyframes menuSlideOut{
+    100%{right: -20em}
+    0%  {right: 0}
+}
+
+.cartTitle{
+    display: flex;
+    padding-left: 1em;
+    width: 100%;
+    
+}
+.cartTitle h3{
+    margin: 0;
+    padding-left: .5em;
+}
+
+.cartItemsContainer{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    font-size: .8em;
+    margin-top: .5em;
+    
+}
+.emptyContainer{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    font-size: .8em;
+    align-items: center;
+    margin-top: 1em;
+    color: var(--text-bg);
+}
+.emptyContainer a{
+    margin-top: 1em;
+    color: black;
+}
+
+.cartItem{
+    display: grid;
+    grid-template-columns: 1.5fr 2fr .75fr;
+    height: 7em;
+    align-items: center;
+    justify-items: center;
+}
+
+.itemInfo{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: flex-start;
+    padding-top: 1em;
+}
+
+.itemInfoTitle{
+    font-weight: 600;
+ }
+
+.itemInfoPrice{
+   margin-top: 1em;
+}
+
+.cartItem img{
+    width: 6em;
+    height: 6em;
+    border-radius: .5em;
+    object-fit: cover;
+}
+
+.deleteButton{
+    margin-right: .5em;
+}
+.deleteButton:active{
+    transform: scale(0.95);
+}
+.buyButton{
+    border: 2px solid black;
+    border-radius: 1em;
+    height: 2.5em;
+    width: 15em;
+    font-size: 1em;
+    padding: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white; 
+}
+.buyButton:active{
+    transform: scale(0.98);
 }

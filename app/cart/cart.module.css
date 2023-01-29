@@ -1,0 +1,67 @@
+.container{
+    padding-top: 7.5em;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+}
+
+.info{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+}
+.emptyContainer{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    font-size: .8em;
+    align-items: center;
+    margin-top: 1em;
+    color: var(--text-bg);
+}
+.emptyContainer a{
+    margin-top: 1em;
+    color: black;
+}
+
+.cartItem{
+    display: grid;
+    grid-template-columns: 1.5fr 2fr .75fr;
+    height: 7em;
+    align-items: center;
+    justify-items: center;
+}
+
+.itemInfo{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: flex-start;
+    padding-top: 1em;
+}
+
+.itemInfoTitle{
+    font-weight: 600;
+ }
+
+.itemInfoPrice{
+   margin-top: 1em;
+}
+
+.cartItem img{
+    width: 6em;
+    height: 6em;
+    border-radius: .5em;
+    object-fit: cover;
+}
+
+.deleteButton{
+    margin-right: .5em;
+}
+.deleteButton:active{
+    transform: scale(0.95);
+}

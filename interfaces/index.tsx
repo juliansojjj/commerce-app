@@ -65,11 +65,11 @@ export type Item = {
 }
 
 export type CartState = {
-    items?:Item[];
+    items?:Item[] | null;
 }
 
 export type CartContextProps = {
-    items?:Item[];
+    items?:Item[] | null;
     addProduct: ({ amount, product }: Item) => void
-    // removeProduct:(productId)=>void
+    removeProduct: (product: Product) => void
 }
