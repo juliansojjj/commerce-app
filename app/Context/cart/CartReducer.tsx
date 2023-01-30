@@ -1,9 +1,9 @@
 "use client"
 
-import { CartState, Item, Product } from '../../../interfaces/index';
+import { CartState, Item, Product, InitialCartItem } from '../../../interfaces/index';
 
 type CartAction = 
-| { type:'setInitialState', payload:Item[]}
+| { type:'setInitialState', payload:Item[]|InitialCartItem[]}
 | { type:'addNewProduct', payload:Item}
 | { type:'addExistingProduct', payload:Item}
 | { type:'removeProduct', payload:Product}
@@ -37,7 +37,7 @@ export const CartReducer = (state:CartState,action:CartAction)=>{
                             return {...unit,amount: unit.amount + action.payload.amount}
                         }
                         else{
-                            return {unit}
+                            return unit
                         }
                     })
                 }

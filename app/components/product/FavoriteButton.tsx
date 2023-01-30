@@ -32,10 +32,9 @@ export default function FavoriteButton({itemId}:{itemId:number}){
         await mutate(deleteFavorite(userId, itemId))
     }
 
-    if(data == 'FALSE') return(
-        <FavoriteEmpty onClick={()=>mutatePostFavorite(user?.id,itemId)} />
+    if(data == 'TRUE') return(
+        <FavoriteFilled onClick={()=>mutateDeleteFavorite(user?.id,itemId)} />        
     )
-    else return(
-        <FavoriteFilled onClick={()=>mutateDeleteFavorite(user?.id,itemId)} />
-    )
+    return(
+        <FavoriteEmpty onClick={()=>mutatePostFavorite(user?.id,itemId)} />)
 }

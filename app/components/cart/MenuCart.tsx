@@ -4,17 +4,15 @@ import { useCartContext } from '../../Context/cart/CartStore';
 import { Item } from '../../../interfaces/index';
 import styles from '../menu/menu.module.css'
 import DeleteIcon from '@mui/icons-material/DeleteOutlineOutlined';
-import AmountInput from '../product/AmountInput';
 import Link from 'next/link';
 
 export default function MenuCart(){
     const {items, removeProduct} = useCartContext() 
-    console.log(items)
-
-    if(items){
+    
+    if(items && items.length > 0){
         return(
             <div className={styles.cartItemsContainer}>
-                    {items.map((unit:Item)=>{
+                    {items?.map((unit:Item)=>{
                         return(
                             <div className={styles.cartItem} key={unit.product.id}>
                                 <img src={unit.product.image} alt={unit.product.name} />

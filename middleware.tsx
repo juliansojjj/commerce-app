@@ -16,6 +16,22 @@ import { getToken } from "next-auth/jwt"
       else return NextResponse.next();
     }
 
+    // middleware cart
+    if (req.nextUrl.pathname.startsWith('/cart')) {
+      if (!session) {
+        const requestedPage = req.nextUrl.pathname;
+        const url = req.nextUrl.clone();
+        // a donde debe loguearse
+        url.pathname = `/signin`;
+        // agreagamos como param de donde venia
+        url.search = `p=${requestedPage}`;
+        // redirige
+        return NextResponse.redirect(url);
+      }
+    
+        return NextResponse.next();
+    } 
+
     // middleware checkout
     if (req.nextUrl.pathname.startsWith('/checkout')) {
       if (!session) {

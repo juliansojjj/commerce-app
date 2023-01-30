@@ -14,9 +14,9 @@ import ErrorAdvice from './ErrorAdvice';
 
 const favoritesFetch = (url)=> fetch(url, { cache: 'no-store' })
 .then((res)=> {return res.json()})
-.then((item)=>{
+.then((unit)=>{
     let repo : Product[] = []
-    item.favorite.map( (item)=>{
+    unit.favorite.map( (item)=>{
         return fetch(`http://localhost:8000/api/products/${item.item_id}`)
         .then((res)=>{
             return res.json()

@@ -8,14 +8,20 @@ import Close from '../../../public/icons/close.svg';
 import { useState } from 'react'
 import MenuCart from '../cart/MenuCart';
 import ShoppingCart from '@mui/icons-material/ShoppingCartOutlined';
+import { useCartContext } from '../../Context/cart/CartStore';
 
 export default function Menu({closeAnimation, closeMenu}){
     const {user} = useAuthContext()
+    const {items} = useCartContext()
 
-    if(user)
     return(
         <div className={`${styles.container} ${closeAnimation ? styles.menuClosed : ''}`}>
-                <Link href='/profile'>{user.name}</Link>
+            {user 
+            ?
+            <Link href='/profile'>{user.name}</Link> 
+            : 
+            <Link href='/signin'>Iniciar sesión</Link>}
+                
                 <hr />
                 <div className={styles.cartTitle}>
                     <ShoppingCart/>
@@ -23,17 +29,15 @@ export default function Menu({closeAnimation, closeMenu}){
                 </div>
                 <MenuCart />
                 <hr />
+                {items?.length! > 0
+                ?
                 <Link href='/cart'>
                     <button className={styles.buyButton} onClick={closeMenu}>
                         <div>Finalizar Compra</div>
                     </button>
                 </Link>
-        </div>
-    )
-
-    return(
-        <div> 
-            <Link href='/signin'>Iniciar sesión</Link>
+                :
+                ''}
         </div>
     )
 }

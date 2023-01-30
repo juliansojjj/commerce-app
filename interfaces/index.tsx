@@ -63,6 +63,10 @@ export type Item = {
     amount:number;
     product:Product;
 }
+export type InitialCartItem = {
+    amount:number;
+    product?:Product;
+}
 
 export type CartState = {
     items?:Item[] | null;
