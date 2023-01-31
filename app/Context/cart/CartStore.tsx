@@ -12,13 +12,15 @@ import useSWR from 'swr';
 
 
 export const initialState : CartState= {
-    items:null
+    items:null,
 }
 
 const CartContext = createContext<CartContextProps>({
     items:null,
     addProduct({ amount, product }) {},
     removeProduct(product) {},
+    increaseAmount({ amount, product }){},
+    decreaseAmount({ amount, product }){}
 });
 
 const fetchInitialCart =(url)=>fetch(url)
@@ -52,11 +54,11 @@ export const CartContextProvider = ({ children }:Children) => {
 
     useEffect(()=>{
         if(data){
-            dispatch({type:'setInitialState',payload:data})
+            dispatch({type:'setInitialCart',payload:data})
         }
         else{
         const cartCookies = Cookies.get('cart') ? JSON.parse(Cookies.get('cart')) : [];
-        dispatch({type:'setInitialState',payload:cartCookies})
+        dispatch({type:'setInitialCart',payload:cartCookies})
         }
         
     },[data]);
@@ -116,6 +118,31 @@ export const CartContextProvider = ({ children }:Children) => {
         }
     }
 
+    const increaseAmount = async({amount, product}:Item)=>{
+        console.log(amount)
+        if(user){
+        await axios.put(`http://localhost:8000/api/checkout/cart/${user.id}-${product.id}`,{
+            amount
+        })
+            .then(()=>{
+                dispatch({type:'increaseProductAmount',payload:{product,amount}});
+            })
+            .catch(err=>console.log(err))
+        }
+    }
+
+    const decreaseAmount = async({amount, product}:Item)=>{
+        if(user){
+            await axios.put(`http://localhost:8000/api/checkout/cart/${user.id}-${product.id}`,{
+                amount
+            })
+                .then(()=>{
+                    dispatch({type:'increaseProductAmount',payload:{product,amount}});
+                })
+                .catch(err=>console.log(err))
+            }
+    }
+
     const removeProduct = async (product:Product)=>{
         if(user){
             await axios.delete(`http://localhost:8000/api/checkout/cart/${user.id}-${product.id}`)
@@ -132,7 +159,9 @@ export const CartContextProvider = ({ children }:Children) => {
     const value = {
         items:state.items,
         addProduct,
-        removeProduct
+        removeProduct, 
+        increaseAmount,
+        decreaseAmount
     }
     
     return (

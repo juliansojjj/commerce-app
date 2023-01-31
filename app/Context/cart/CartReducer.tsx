@@ -3,16 +3,25 @@
 import { CartState, Item, Product, InitialCartItem } from '../../../interfaces/index';
 
 type CartAction = 
-| { type:'setInitialState', payload:Item[]|InitialCartItem[]}
+| { type:'setInitialCart', payload:Item[]|InitialCartItem[]}
+| { type:'setSubtotal', payload:number}
 | { type:'addNewProduct', payload:Item}
-| { type:'addExistingProduct', payload:Item}
 | { type:'removeProduct', payload:Product}
+| { type:'addExistingProduct', payload:Item}
+| { type:'increaseProductAmount', payload:Item}
+| { type:'decreaseProductAmount', payload:Item}
 
 export const CartReducer = (state:CartState,action:CartAction)=>{
     switch (action.type) {
-        case 'setInitialState':
+        case 'setInitialCart':
             return{
                 items:action.payload
+                }
+
+        case 'setSubtotal':
+            return{
+                ...state,
+                subtotal:action.payload
                 }
             
         case 'addNewProduct':
@@ -63,6 +72,41 @@ export const CartReducer = (state:CartState,action:CartAction)=>{
                 }   
                 //si no hay items, wipeamos el estado
                 else return{
+                }
+            }
+            return{
+                ...state
+            }
+        case 'increaseProductAmount':
+            if(state.items){
+                return{
+                    ...state,
+                    items:state.items.map((unit:any)=>{
+                        if(unit.product.id === action.payload.product?.id){
+                            return {...unit,amount: action.payload.amount}
+                        }
+                        else{
+                            return unit
+                        }
+                    })
+                }
+            }
+            return{
+                ...state
+            }
+
+        case 'decreaseProductAmount':
+            if(state.items){
+                return{
+                    ...state,
+                    items:state.items.map((unit:any)=>{
+                        if(unit.product.id === action.payload.product?.id){
+                            return {...unit,amount: action.payload.amount}
+                        }
+                        else{
+                            return unit
+                        }
+                    })
                 }
             }
             return{

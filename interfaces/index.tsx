@@ -74,6 +74,8 @@ export type CartState = {
 
 export type CartContextProps = {
     items?:Item[] | null;
-    addProduct: ({ amount, product }: Item) => void
-    removeProduct: (product: Product) => void
+    addProduct:     ({ amount, product }: Item) => void;
+    removeProduct:  (product: Product) => void;
+    increaseAmount: ({ amount, product }: Item) => void;
+    decreaseAmount: ({ amount, product }: Item) => void;
 }

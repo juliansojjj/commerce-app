@@ -11,6 +11,7 @@
     display: flex;
     flex-direction: column;
     width: 60%;
+    align-items: center;
 }
 .emptyContainer{
     display: flex;
@@ -28,10 +29,13 @@
 
 .cartItem{
     display: grid;
-    grid-template-columns: 1.5fr 2fr .75fr;
+    width: 40em;
+    grid-template-columns: minmax(6em,10em) 2fr .75fr;
     height: 7em;
+    padding: 1em;
     align-items: center;
     justify-items: center;
+    border-bottom: 1px solid white;
 }
 
 .itemInfo{
@@ -39,17 +43,29 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-content: flex-start;
     padding-top: 1em;
+}
+
+.itemInfoPrice{
+    text-align: end;
 }
 
 .itemInfoTitle{
     font-weight: 600;
  }
 
-.itemInfoPrice{
-   margin-top: 1em;
+.itemInfoAmount{
+    margin-bottom: 1em;
+}
+
+.priceAndTrash{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    height: 100%;
+    padding-top: 1em;
 }
 
 .cartItem img{
@@ -60,8 +76,62 @@
 }
 
 .deleteButton{
-    margin-right: .5em;
+    margin-top: 3em;
 }
 .deleteButton:active{
     transform: scale(0.95);
+}
+
+
+
+
+
+
+
+.amountComponent{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.input{
+   width: fit-content; 
+   display: flex;
+   align-items: center;
+   border: 1px solid grey;
+   border-radius: .3em;
+}
+.numberContainer{
+    padding: .3em;
+    padding-left: .6em;
+    width: .7em;
+}
+.arrowsContainer{
+    display: flex;
+    flex-direction: column;
+    padding-right: .3em;
+}
+.arrowsContainer svg{
+    height: .8em;
+}
+
+.arrow{
+    height: 1em;
+}
+.arrow:active{
+    transform: scale(0.98);
+}
+
+.amountError{
+    font-size: .6em;
+    color: #C70000;
+    position: absolute;
+    left: 7em;
+    top: 2em;
+}
+
+.hr{
+    height:1px;
+    background-color: white;
+    width: 100%;
 }
