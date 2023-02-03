@@ -2,7 +2,6 @@
 
 import { createContext, useContext, useReducer, ReactNode, useEffect } from "react";
 import { CartReducer } from "./CartReducer";
-import {useSession, signOut} from 'next-auth/react'
 import { CartContextProps, CartState, Children, InitialCartItem, Item, Product } from "../../../interfaces";
 import Cookies from 'js-cookie'
 import axios from 'axios';
@@ -11,23 +10,23 @@ import useSWR from 'swr';
 
 
 
-export const initialState : CartState= {
-    items:null,
+export const initialState : CartState = {
+    items:undefined,
 }
 
 const CartContext = createContext<CartContextProps>({
-    items:null,
+    items:undefined,
     addProduct({ amount, product }) {},
     removeProduct(product) {},
     increaseAmount({ amount, product }){},
     decreaseAmount({ amount, product }){}
 });
 
-const fetchInitialCart =(url)=>fetch(url)
+const fetchInitialCart =(url:string)=>fetch(url)
                         .then(res=>res.json())
                         .then((item)=>{
                             const cart:InitialCartItem[] = []
-                            item.cart.map(unit=>{
+                            item.cart.map((unit:any)=>{
                                 const obj:InitialCartItem = {
                                     amount:unit.amount,
                                     product:undefined
@@ -48,31 +47,31 @@ const fetchInitialCart =(url)=>fetch(url)
 
 
 export const CartContextProvider = ({ children }:Children) => {
-    const [state, dispatch] = useReducer(CartReducer, initialState);
+    const [state, dispatch] = useReducer(CartReducer, initialState, undefined);
     const {user} = useAuthContext();
     const {data, isLoading} = useSWR(`http://localhost:8000/api/checkout/cart/${user?.id}`,fetchInitialCart)
 
     useEffect(()=>{
         if(data){
-            dispatch({type:'setInitialCart',payload:data})
+            dispatch({type:'setInitialCart',payload:data});
+            
         }
         else{
-        const cartCookies = Cookies.get('cart') ? JSON.parse(Cookies.get('cart')) : [];
-        dispatch({type:'setInitialCart',payload:cartCookies})
+        const cartCookies = Cookies.get('cart') ? JSON.parse(Cookies.get('cart')!) : [];
+        dispatch({type:'setInitialCart',payload:cartCookies});
         }
         
     },[data]);
 
-    
-
     useEffect(()=>{
-        if(state.items)
+        if(state.items){
             Cookies.set('cart',JSON.stringify(state.items))
+        }
     },[state]);
 
     const addProduct = async ({amount,product}:Item)=>{
         if(state.items){
-            const check = state.items.some(unit=>unit.product.id === product.id);
+            const check = state.items.some((unit:Item)=>unit.product.id === product.id);
             if(!check) {
                 if(user){
                     await axios.post('http://localhost:8000/api/checkout/cart',{
@@ -119,7 +118,6 @@ export const CartContextProvider = ({ children }:Children) => {
     }
 
     const increaseAmount = async({amount, product}:Item)=>{
-        console.log(amount)
         if(user){
         await axios.put(`http://localhost:8000/api/checkout/cart/${user.id}-${product.id}`,{
             amount

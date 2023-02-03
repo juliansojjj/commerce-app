@@ -20,30 +20,12 @@ export default function AddressForm() {
     "https://apis.datos.gob.ar/georef/api/provincias",
     provinciasFetch
   );
-  //form elements
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<AddressFormData>();
-
-  //map elements
-  const mapElement = useRef(null);
-  const [mapLongitude, setMapLongitude] = useState(-58.43998336791992);
-  const [mapLatitude, setMapLatitude] = useState(-34.60067367553711);
-  const [mapZoom, setMapZoom] = useState(18);
-  const [map, setMap] = useState({});
-
-  useEffect(() => {
-    let map = tt.map({
-      key: "vBkrEZGgiIcd71ABf2jKAM6KcQnGqFxf", //agregar next public env
-      container: mapElement.current!,
-      center: [mapLongitude, mapLatitude],
-      zoom: mapZoom,
-    });
-    setMap(map);
-    return () => map.remove();
-  }, []);
 
   const onSend = async (data: AddressFormData) => {
     console.log(data);
@@ -111,7 +93,7 @@ export default function AddressForm() {
                   required: "Complete su teléfono",
                   pattern:
                     /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im,
-                })}
+                })}     
               />
               <div className={styles.error}>{errors.Phone.message}</div>
             </>
@@ -233,9 +215,6 @@ export default function AddressForm() {
           </button>
         </div>
       </form>
-      <div className={styles.mapContainer}>
-        <div ref={mapElement} className={styles.mapBox}></div>
-      </div>
     </div>
   );
 }

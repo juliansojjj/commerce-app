@@ -69,13 +69,35 @@ export type InitialCartItem = {
 }
 
 export type CartState = {
-    items?:Item[] | null;
+    items?:Item[];
 }
 
 export type CartContextProps = {
-    items?:Item[] | null;
+    items?:Item[];
     addProduct:     ({ amount, product }: Item) => void;
     removeProduct:  (product: Product) => void;
     increaseAmount: ({ amount, product }: Item) => void;
     decreaseAmount: ({ amount, product }: Item) => void;
+}
+
+//FORMS
+export type SignInFormData = {
+    email: string;
+    password: string;
+}
+
+export type AddressFormData = {
+    Name_Surname:string;
+    Phone:string;
+    Province:string;
+    Street:string;
+    Direction:Number;
+    Department?:string;
+    Instructions?:string;
+    
+    //Barrio/zone
+    Zone?:string;
+    Name?:string;
+    Surname?:string;
+    PostalCode?:string;
 }

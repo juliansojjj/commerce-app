@@ -19,9 +19,14 @@ export const CartReducer = (state:CartState,action:CartAction)=>{
                 }
 
         case 'setSubtotal':
+            if(state.items){
             return{
                 ...state,
                 subtotal:action.payload
+                }
+            }
+            return{
+                ...state
                 }
             
         case 'addNewProduct':

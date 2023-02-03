@@ -4,21 +4,16 @@ import { useForm} from 'react-hook-form';
 import styles from '../../(sign)/sign.module.css'
 import { useEffect, useState } from 'react';
 import { useAuthContext } from '../../Context/AuthStore';
-import {signIn, getProviders, getSession} from 'next-auth/react'
-import { redirect } from 'next/navigation';
+import {signIn, getProviders, getSession} from 'next-auth/react';
+import { SignInFormData } from '../../../interfaces';
 
-type FormData = {
-    email: string;
-    password: string;
-}
-
-export default  function SigninForm({url}) {
-    const {register, handleSubmit, formState: { errors }} = useForm<FormData>();
+export default  function SigninForm({url}:{url:string}) {
+    const {register, handleSubmit, formState: { errors }} = useForm<SignInFormData>();
     const [showError, setShowError] = useState('')
     const [providers, setProviders] = useState<any>()
     const {login, isLoggedIn} = useAuthContext();
 
-    const onLogin = async(data:FormData)=>{
+    const onLogin = async(data:SignInFormData)=>{
         const result = await signIn('credentials',{
             email:data.email,
             password:data.password,
@@ -27,7 +22,7 @@ export default  function SigninForm({url}) {
         });
     }
 
-    const providerLogin = async (provider, callback)=>{
+    const providerLogin = async (provider:any, callback:string)=>{
         await signIn(provider,{
             callbackUrl:`${callback}`
         });

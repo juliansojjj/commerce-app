@@ -1,3 +1,94 @@
 .container{
-    padding-top: 7.5em;
+    padding-top: 6.5em;
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+
+.info{
+    width: 60%;
+}
+
+
+.formContainer{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    min-width: 25em;
+}
+.form:last-child{
+    align-items: center;
+}
+.multipleInputContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.inputContainer{
+    display: flex;
+    flex-direction: column;
+    max-width: 15em;
+    margin-bottom: 2em;
+    position: relative;
+}
+.inputField{
+    margin-top: .8em;
+    width: 12em;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    padding: .3em;
+    border-radius: .5em;
+}
+.inputField:focus{
+    outline: var(--text-bg) solid 3px;
+}
+
+.errorInputField{
+    margin-top: .8em;
+    width: 12em;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    padding: .3em;
+    border-radius: .5em;
+    border: 2px solid var(--error);
+    box-sizing: content-box;
+}
+.errorInputField:focus{
+    outline: var(--error) solid 2px;
+}
+
+.error{
+    margin-top: .2em;
+    width: 100%;
+    color: var(--error);
+    font-size: .8em;
+    position: absolute;
+    bottom: -1.5em;
+}
+
+.mapContainer{
+    height: 400px;
+    width: 400px;
+}
+.mapBox{
+    height: 400px;
+    width: 400px;
+}
+
+.buttonContainer{
+    display: flex;
+    justify-content: center;
+}
+.submitButton{
+    min-width: fit-content;
+    max-width: 15em;
+    padding: .5em;
+    padding-left: 2em;
+    padding-right: 2em;
 }

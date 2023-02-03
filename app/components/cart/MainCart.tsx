@@ -9,9 +9,16 @@ import CartAmount from './CartAmount';
 import { useEffect } from 'react';
 
 export default function MainCart(){
-    const {items, subtotal, removeProduct} = useCartContext() 
+    const {items, removeProduct} = useCartContext() 
+    
+    
 
     if(items){
+        let subtotal:number = 0;
+        items.forEach((unit:any)=>{
+                subtotal += unit.product.price * unit.amount
+            })
+        
         return(
             <div className={styles.cartItemsContainer}>
                     {items.map((unit:Item)=>{
@@ -37,7 +44,8 @@ export default function MainCart(){
                         )
                     })}
                     <div>
-                        {subtotal}
+                        <h4>Subtotal: ${subtotal}</h4>
+                        <Link href='/checkout/address'>Finalizar compra</Link>
                     </div>
             </div>
         )
