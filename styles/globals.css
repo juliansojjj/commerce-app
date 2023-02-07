@@ -9,6 +9,7 @@ html,body{
 
 :root{
   --main-bg: #000000;
+  --content-bg: #2e2e2e;
   --text-bg: #808080;
   --error: #C70000;
 }

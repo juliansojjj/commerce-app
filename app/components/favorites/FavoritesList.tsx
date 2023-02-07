@@ -12,11 +12,11 @@ import { Product } from '../../../interfaces'
 import { ErrorBoundaries } from '../../../utilities'
 import ErrorAdvice from './ErrorAdvice';
 
-const favoritesFetch = (url)=> fetch(url, { cache: 'no-store' })
+const favoritesFetch = (url:string)=> fetch(url, { cache: 'no-store' })
 .then((res)=> {return res.json()})
 .then((unit)=>{
     let repo : Product[] = []
-    unit.favorite.map( (item)=>{
+    unit.favorite.map( (item:any)=>{
         return fetch(`http://localhost:8000/api/products/${item.item_id}`)
         .then((res)=>{
             return res.json()

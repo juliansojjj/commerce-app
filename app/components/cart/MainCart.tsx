@@ -45,7 +45,7 @@ export default function MainCart(){
                     })}
                     <div>
                         <h4>Subtotal: ${subtotal}</h4>
-                        <Link href='/checkout/address'>Finalizar compra</Link>
+                        <Link href='/checkout'>Finalizar compra</Link>
                     </div>
             </div>
         )

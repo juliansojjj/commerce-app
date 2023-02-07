@@ -90,14 +90,12 @@ export type AddressFormData = {
     Name_Surname:string;
     Phone:string;
     Province:string;
+    Postal_Code:string;
     Street:string;
     Direction:Number;
     Department?:string;
-    Instructions?:string;
+    Note?:string;
     
-    //Barrio/zone
-    Zone?:string;
     Name?:string;
     Surname?:string;
-    PostalCode?:string;
 }

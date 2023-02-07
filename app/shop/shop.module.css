@@ -28,7 +28,7 @@
 }
 
 .productCard{
-    background-color: #1a1a1a;
+    background-color: var(--content-bg);
     width: 22em;
     height: 28em;
     border-radius: 1em;
