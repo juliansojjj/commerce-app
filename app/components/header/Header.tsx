@@ -1,5 +1,4 @@
 "use client";
-//no pude encontrar modo de hacerlo dinámico sin hacerlo del cliente
 
 import { useEffect, useState } from 'react';
 import styles from './header.module.css'
@@ -10,7 +9,11 @@ import MenuRounded from '@mui/icons-material/Menu';
 import MenuDisplay from '../menu/Menu'
 import { usePathname } from 'next/navigation';
 import { useCartContext } from '../../Context/cart/CartStore';
+import clsx from 'clsx';
 
+import PeopleIcon from '@mui/icons-material/PeopleAltRounded';
+import ContactIcon from '@mui/icons-material/AddIcCallRounded';
+import ShopIcon from '@mui/icons-material/LocalMallOutlined';
 
 export default function Header(){
     const [scroll, setScroll] = useState(false);
@@ -65,11 +68,24 @@ export default function Header(){
                     <Image src={Icon} alt='Flagon Icon' className={`${styles.icon} ${scroll ? `${styles.scrollIcon}` : ''}`}/>
                 </Link>
                 <div className={styles.centerContainer}>
-                    <Link href='/about'>Nosotros</Link>
-                    <Link href='/shop' className={styles.productsLink}>
-                        <div>Productos</div>
+                    <Link href='/about' className={styles.mainLink}>
+                        Nosotros
                     </Link>
-                    <Link href='/contact'>Contacto</Link>
+                    <Link href='/about' className={styles.minorLink}>
+                        <PeopleIcon />
+                    </Link>
+                    <Link href='/shop' className={clsx(styles.mainLink)}>
+                        <div className={styles.productsLink}>Productos</div>
+                    </Link>
+                    <Link href='/shop' className={clsx(styles.minorLink, styles.productsLink)}>
+                        <ShopIcon />
+                    </Link>
+                    <Link href='/about' className={styles.mainLink}>
+                        Contacto
+                    </Link>
+                    <Link href='/about' className={styles.minorLink}>
+                        <ContactIcon />
+                    </Link>
                 </div>
                 <div className={styles.menu}>
                     <MenuRounded onClick={handleMenu} cursor='pointer' fontSize='large'/>

@@ -3,14 +3,58 @@
     color: white;
     display: flex;
     justify-content: center;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.alert{
+    position: absolute;
+    background-color: var(--content-bg);
+    top: 8em;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    padding: 1em;
+    right: 0;
+    border-bottom-left-radius: 1em;
+    border-top-left-radius: 1em;
+    border: 2px solid var(--text-bg);
+    border-right: 0;
+    animation: alertIn 1s ease, alertOut 1.1s ease-out;
+    animation-delay: 0s, 3s;
+}
+.alert svg{
+    fill: #eed66b;
+}
+
+@keyframes alertIn {
+	0% {
+		right: -18em;
+	}
+	100% {
+		right: 0;
+	}
+}
+@keyframes alertOut {
+	0% {
+		right: 0;
+	}
+	100% {
+		right: -18em;
+	}
 }
 
 .info{
     width: 60%;
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: .75fr 1fr;
 }
-
+.infoNormal{
+    width: 60%;
+    display: grid;
+    justify-content: center;
+}
 
 .formContainer{
     display: flex;
@@ -113,8 +157,9 @@
     padding-right: 2em;
     border: none;
     border-radius: .5em;
+    margin-top: 1em;
 }
-.submitButton:focus{
+.submitButton:active{
     transform: scale(0.98);
 }
 
@@ -141,7 +186,7 @@
     font-size: .8em;
     display: grid;
     grid-template-columns: 1fr 1fr .25fr .2fr;
-    border: 2px solid var(--text-bg);
+    border: 2px solid var(--content-bg);
     border-radius: 1em;
     padding: .5em;
     padding-left: 2em;
@@ -149,6 +194,9 @@
     margin-top: 1em;
     justify-content: space-between;
     align-items: center;
+}
+.addressContainer:hover{
+    color: white;
 }
 
 .currentAddressContainer{
@@ -242,7 +290,7 @@
     width: 100%;
     height: 2em;
     display: flex;
-    border: 2px solid var(--text-bg);
+    border: 2px solid var(--content-bg);
     border-radius: 1em;
     box-sizing: border-box;
     margin-top: 1em;
@@ -283,7 +331,7 @@
     font-size: .8em;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr .5fr;
-    border: 2px solid var(--text-bg);
+    border: 2px solid var(--content-bg);
     border-radius: 1em;
     padding: .5em;
     padding-left: 2em;
@@ -291,6 +339,9 @@
     margin-top: 1em;
     justify-items: center;
     align-items: center;
+}
+.optionContainer:hover{
+    color: white;
 }
 
 .currentOptionContainer{
@@ -308,4 +359,88 @@
     justify-items: center;
     align-items: center;
     background-color: var(--content-bg);
+}
+
+.details{
+    width: 90%;
+    height: fit-content;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 1fr .5fr;
+}
+
+.subtitle{
+    margin: 0;
+}
+
+.pricesContainer{
+    display: grid;
+    grid-template-columns: 1fr .75fr;
+    grid-template-rows: repeat(2,1.5em) 2em;
+    border: 2px solid var(--content-bg);
+    border-radius: 1em;
+    padding: .5em;
+}
+
+.priceTotal{
+    margin-top: .3em;
+    color: #eed66b;
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+.payment{
+    width: 100%;
+    height: fit-content;
+    /*border: 2px solid var(--text-bg);*/
+    box-sizing: border-box;
+    border-radius: 1em;
+    display: flex;
+    flex-direction: column;
+}
+
+.paymentOption{
+    min-width: fit-content;
+    width: 85%;
+    border-radius: .5em;
+    border: 2px solid var(--content-bg);
+    display: grid;
+    grid-template-columns: .2fr .5fr 2fr;
+    margin-top: .8em;
+    padding: .5em;
+    justify-items: start;
+    align-items: center;
+    color: var(--text-bg);
+    font-size: .9em;
+    cursor: default;
+}
+.paymentOption:hover{
+    color: white;
+}
+
+.currentPaymentOption{
+    background-color: var(--content-bg);
+    border: 3px solid #1f1f1f;
+    color: white;
+}
+
+.paymentImgContainer{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+.paymentImg{
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: .3em;
+    object-fit: scale-down;
+    margin-right: .3em;
+    background-color: white;
+}
+.paymentImgNoBg{
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: .3em;
+    object-fit: scale-down;
+    margin-right: .3em;
 }

@@ -7,9 +7,9 @@ export default function Address({searchParams}: {
   }){
     return(
         <div className={styles.container}>
-            <div className={styles.info}>
-                <h2>Agregue una dirección de facturación</h2>
-                <AddressForm edit={searchParams?.edit}/>
+            <div className={styles.infoNormal}>
+                    <h2>Agregue una dirección de facturación</h2>
+                    <AddressForm edit={searchParams?.edit}/>
             </div>
         </div>
     )

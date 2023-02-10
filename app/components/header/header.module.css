@@ -68,9 +68,13 @@
     background-color: white;
     border-radius: .5em;
     padding: .5em;
-}
-.productsLink div{
     color: black;
+}
+.mainLink{
+    display: contents;
+}
+.minorLink{
+    display: none;
 }
 
 .blackScreen{
@@ -116,8 +120,11 @@
         padding-left: 3em;
         padding-right: 3em;
     }
-    .centerContainer{
+    .mainLink{
         display: none;
+    }
+    .minorLink{
+        display: contents;
     }
     .icon{
         margin-right: 0;
@@ -154,9 +161,13 @@
         transition: background-color backdrop-filter 1s;
     }
     
-    .centerContainer{
+    .mainLink{  
         display: none;
     }
+    .minorLink{
+        display: none;
+    }
+    
     .icon{
         filter: invert(98%) sepia(1%) saturate(4%) hue-rotate(135deg) brightness(114%) contrast(100%);
         margin-right: 0;

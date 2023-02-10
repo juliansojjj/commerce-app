@@ -5,13 +5,16 @@ import { Item } from '../../../interfaces/index';
 import styles from '../menu/menu.module.css'
 import DeleteIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import Link from 'next/link';
+import clsx from 'clsx';
 
-export default function MenuCart(){
+export default function MenuCart({checkout}:{checkout:'TRUE'|'FALSE'}){
     const {items, removeProduct} = useCartContext() 
     
     if(items && items.length > 0){
         return(
-            <div className={styles.cartItemsContainer}>
+            <div className={clsx(styles.cartItemsContainer,
+                {[styles.checkoutContainer] : checkout == 'TRUE'})}
+                >
                     {items?.map((unit:Item)=>{
                         return(
                             <div className={styles.cartItem} key={unit.product.id}>
@@ -21,9 +24,12 @@ export default function MenuCart(){
                                     <div>Cant: {unit.amount}</div>
                                     <div className={styles.itemInfoPrice}>${unit.amount*unit.product.price}</div>
                                 </div>
+                                {checkout == 'TRUE'
+                                ? ''
+                                :
                                 <div className={styles.deleteButton} onClick={()=>removeProduct(unit.product)}>
                                     <DeleteIcon />
-                                </div>
+                                </div>}
                             </div>
                         )
                     })}

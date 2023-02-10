@@ -31,7 +31,7 @@ export default function Menu({closeAnimation, closeMenu}:{closeAnimation:any, cl
                     <ShoppingCart/>
                     <h3>Carrito de compras</h3>
                 </div>
-                <MenuCart />
+                <MenuCart checkout='FALSE'/>
                 <hr />
                 {items?.length! > 0
                 ?
