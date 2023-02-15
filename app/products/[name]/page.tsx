@@ -2,16 +2,15 @@ import styles from './products.module.css'
 import ProductForm from '../../components/product/ProductForm'
 
 const fetchData = async(type:string,id:number)=>{
-    //const res = await fetch(`http://localhost:8000/api/products/${id}`, { cache: 'no-store' });
     const res = await fetch(`http://localhost:8000/api/products/model/${type}-${id}`, { cache: 'no-store' });
-    //const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, { cache: 'no-store' });
     return res.json()
 }
 
-export default async function Product({params}){
+export default async function Product({params}: {
+    params: { name: string } }){
     const props = params.name.split('--')
     const type = props[1]
-    const id : number = props[2]
+    const id : number = parseInt(props[2])
 
     const res = await fetchData(type,id)
     const item = res.product

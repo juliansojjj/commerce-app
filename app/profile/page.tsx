@@ -10,9 +10,10 @@ export default function Profile(){
         <div className={styles.container}>
             <SignOutButton />
             <h3>Favoritos</h3>
-            <Suspense fallback={<SkeletonProfileList />}>
+            <FavoritesList containerType='profile'/>
+            {/*<Suspense fallback={<SkeletonProfileList />}>
                 <FavoritesList containerType='profile'/>
-            </Suspense>
+            </Suspense>*/}
         </div>
         
     )

@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { getToken } from "next-auth/jwt"
+import { useCartContext } from './app/Context/cart/CartStore';
 
   export async function middleware(req:NextRequest) {
     const session = await getToken({
@@ -44,9 +45,28 @@ import { getToken } from "next-auth/jwt"
         // redirige
         return NextResponse.redirect(url);
       }
-    
         return NextResponse.next();
     } 
+
+    if (req.nextUrl.pathname.startsWith('/payment')) {
+      if (!session) {
+        console.log('middleware')
+        console.log(req.nextUrl.searchParams)
+        const requestedPage = req.nextUrl.pathname;
+        const url = req.nextUrl.clone();
+        url.pathname = `/shop`;
+        // redirige
+        return NextResponse.redirect(url);
+      } else if(req.nextUrl.searchParams.get('p') != 'tarjeta') {
+        const requestedPage = req.nextUrl.pathname;
+        const url = req.nextUrl.clone();
+        url.pathname = `/shop`;
+        // redirige
+        return NextResponse.redirect(url);
+    } 
+
+    return NextResponse.next();
+  }
 
     // middleware profile
     if (req.nextUrl.pathname.startsWith('/profile')) {

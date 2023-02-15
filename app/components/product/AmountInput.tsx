@@ -6,7 +6,7 @@ import styles from '../../products/[name]/products.module.css'
 import ArrowUp from '@mui/icons-material/ArrowDropUpOutlined';
 import ArrowDown from '@mui/icons-material/ArrowDropDownOutlined';
 
-export default function AmountInput({stock, setAmount, amount}){
+export default function AmountInput({stock, setAmount, amount}:{stock:number, setAmount:any, amount:number}){
     
     const [alert, setAlert] = useState('')
 
@@ -24,7 +24,7 @@ export default function AmountInput({stock, setAmount, amount}){
             }
         }
         if(type === 'down'){
-            if(amount - 1 === 0){
+            if(amount - 1 == 0 || amount - 1 < 0){
                 return
             }
             else{

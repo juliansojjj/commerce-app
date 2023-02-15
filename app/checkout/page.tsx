@@ -6,6 +6,12 @@ import useSWR from "swr";
 import { useState, Suspense, useEffect } from "react";
 import axios from "axios";
 import clsx from "clsx";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import AddressesSkeleton from "../components/checkout/addressesSkeleton";
+import MenuCart from "../components/cart/MenuCart";
+import { useCartContext } from "../Context/cart/CartStore";
+import { nanoid } from "nanoid";
 
 import { Be_Vietnam_Pro } from "@next/font/google";
 import CircleIcon from "@mui/icons-material/Circle";
@@ -18,21 +24,17 @@ import CashIcon from "@mui/icons-material/MonetizationOnOutlined";
 import BankIcon from "@mui/icons-material/AccountBalanceOutlined";
 import AlertIcon from '@mui/icons-material/PriorityHighRounded';
 
-import Link from "next/link";
-import AddressesSkeleton from "../components/checkout/addressesSkeleton";
-import MenuCart from "../components/cart/MenuCart";
-import { useCartContext } from "../Context/cart/CartStore";
-
 const vietnamPro = Be_Vietnam_Pro({ weight: "400" });
 
 const addressesFetch = (url: string) =>
   fetch(url)
     .then((res) => res.json())
     .catch((err) => {
-      throw err;
+      throw new Error(err);
     });
 
 export default function Checkout() {
+  const router = useRouter()
   const { user } = useAuthContext();
   const { data, mutate } = useSWR(
     `http://localhost:8000/api/checkout/address/${user?.id}`,
@@ -88,6 +90,13 @@ export default function Checkout() {
     }
   }, [postalCode, sendOption]);
 
+  useEffect(() => {
+    if(items?.length! == 0){
+      router.push('/shop');
+    }
+  }, [items])
+  
+
   const fetchSendPrice = async () => {
     setTimeout(() => {
       // api de correo argentino o distribuidor del local
@@ -95,16 +104,37 @@ export default function Checkout() {
       setSendPrice(price);
     }, 1000);
   };
-
+  
   const handleOrder = async()=>{
     if(addressLocation && paymentOption){
-        if( paymentOption == 'efectivo' || 
+              const orderId = nanoid(10)
+              const userCart:{}[] = []
+              items?.map(unit=>{
+                userCart.push({amount:unit.amount,productId:unit.product.id})
+              })
+              console.log(orderId)
+              await axios.post(`http://localhost:8000/api/checkout/order/after/${user?.id}`,{
+                id: orderId,
+                payment_option:paymentOption,
+                send_option:sendOption,
+                address_id:addressLocation,
+                items:userCart
+              })
+              .then(res=>{
+                if( paymentOption == 'efectivo' || 
             paymentOption == 'transferencia-deposito' || 
             paymentOption == 'pagofacil-rapipago'){
-        }
-        else {
-
-        }
+              router.push(`/order/${res.data.order.id}`);
+              console.log(res)
+            }else if( paymentOption == 'mercadopago'){
+              //llamado a servicio de pago de mercadopago
+              router.push(`/payment/mercadopago`);
+            }else{
+              //llamado a servicio de pago
+              router.push(`/payment?p=tarjeta&id=${res.data.order.id}`);
+            }
+              })
+              .catch(err=>{throw new Error(err)})
     }
     else{
         setAlert('Seleccione todos los campos');

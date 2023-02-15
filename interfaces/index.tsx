@@ -99,3 +99,12 @@ export type AddressFormData = {
     Name?:string;
     Surname?:string;
 }
+
+export type CardPaymentFormData = {
+    Card_Number:number;
+    Owner:string;
+    Expiration:string;
+    Security_Code:number;
+    Dues:string;
+    Document_data:number;
+}

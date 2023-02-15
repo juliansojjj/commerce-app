@@ -23,25 +23,28 @@ const CartContext = createContext<CartContextProps>({
 });
 
 const fetchInitialCart =(url:string)=>fetch(url)
-                        .then(res=>res.json())
+                        .then(res=>{
+                            return res.json()})
                         .then((item)=>{
-                            const cart:InitialCartItem[] = []
-                            item.cart.map((unit:any)=>{
-                                const obj:InitialCartItem = {
-                                    amount:unit.amount,
-                                    product:undefined
-                                }
-                                return fetch(`http://localhost:8000/api/products/${unit.item_id}`)
-                                .then((res)=>{
-                                    return res.json()
-                                })
-                                .then(product=>{
-                                    obj.product = product.product;
-                                    cart.push(obj)
-                                })
-                                .catch(err=>{console.log(err)})
-                            });
-                            return cart
+                            return Promise.all(item.cart.map((unit:any)=>{
+                                const promise = new Promise(async(resolve,reject)=>{
+                                    const obj:InitialCartItem = {
+                                        amount:unit.amount,
+                                        product:undefined
+                                    }
+                                    await fetch(`http://localhost:8000/api/products/${unit.item_id}`)
+                                    .then((res)=>{
+                                        return res.json()
+                                    })
+                                    .then(product=>{
+                                        obj.product = product.product;
+                                        resolve(obj)
+                                    })
+                                    .catch(err=>reject(err))
+                                });
+                                return promise
+                            }))
+                            
                         })
                         .catch(err=>console.log(err))
 

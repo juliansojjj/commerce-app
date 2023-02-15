@@ -1,0 +1,10 @@
+.container{
+    padding-top: 6em;
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+
+.orderContainer{
+    position: relative;
+}

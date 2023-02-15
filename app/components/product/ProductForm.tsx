@@ -7,7 +7,7 @@ import AmountInput from './AmountInput';
 import {Be_Vietnam_Pro} from '@next/font/google';
 import FavoriteButton from './FavoriteButton';
 import { useCartContext } from '../../Context/cart/CartStore';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Product } from '../../../interfaces/index';
 
 
@@ -16,10 +16,21 @@ const vietnamPro = Be_Vietnam_Pro({weight:'400'});
 
 export default function ProductForm({stock, product}:{stock:number,product:Product}){
     const {items, addProduct, removeProduct} = useCartContext() 
-    const [amount, setAmount] = useState<number>(1)
+    const [amount, setAmount] = useState<number>(0)
+
+    useEffect(()=>{
+        if(stock){
+            setInitialAmount()
+        }
+    },[stock])
+
+    const setInitialAmount = ()=>{
+        setAmount(1)
+    }
     
     const handleProduct = ()=>{
-        addProduct({
+        if(!amount){}
+        else addProduct({
             amount:amount,
             product:product
         })

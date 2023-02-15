@@ -16,7 +16,7 @@ import Link from "next/link";
 
 const vietnamPro = Be_Vietnam_Pro({ weight: "400" });
 
-const provinciasFetch = (url: string) =>
+const multipleFetcher = (url: string) =>
   fetch(url)
     .then((res) => res.json())
     .catch((err) => {
@@ -34,11 +34,11 @@ export default function AddressForm({edit}:{edit:string}) {
   const router = useRouter();
   const { data: oldValues } = useSWR(
     `http://localhost:8000/api/checkout/address/old/${edit}`,
-    provinciasFetch
+    multipleFetcher
     );
     const { data: provincias } = useSWR(
       "https://apis.datos.gob.ar/georef/api/provincias",
-      provinciasFetch
+      multipleFetcher
       );
       const { user } = useAuthContext();
       

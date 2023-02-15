@@ -7,7 +7,7 @@ import ArrowUp from '@mui/icons-material/ArrowDropUpOutlined';
 import ArrowDown from '@mui/icons-material/ArrowDropDownOutlined';
 import { useCartContext } from '../../Context/cart/CartStore';
 
-export default function CartAmount({stock, amount, product}){
+export default function CartAmount({stock, amount, product}:{stock:number, amount:number, product:any}){
     
     const [alert, setAlert] = useState('')
     const {increaseAmount, decreaseAmount} = useCartContext()
