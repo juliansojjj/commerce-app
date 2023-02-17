@@ -8,11 +8,9 @@ export default function Payment({searchParams}: {
     searchParams: { [key: string]: string  };
   }){
 
-
-
     return(
         <div className={styles.container}>
-            <CardForm operationId={searchParams.id}/>
+            <CardForm operationId={searchParams.id} operationType={searchParams.p}/>
         </div>
     )
 }

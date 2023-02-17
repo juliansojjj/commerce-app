@@ -1,6 +1,129 @@
 .container{
-    padding-top: 6em;
+    padding-top: 7em;
     color: white;
     display: flex;
     justify-content: center;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    min-width: 360px;
+    width: 25%;
+    justify-content: flex-start;
+}
+.multipleInputContainer{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+}
+.selectMultipleInputContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+}
+.inputContainer{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2.5em;
+    position: relative;
+}
+.inputContainer a{
+    font-size: .8em;
+    text-decoration: underline;
+    color: var(--text-bg);
+}
+.inputContainer a:hover{
+    color: white;
+}
+
+.optionInputContainer{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2.5em;
+    position: relative;
+    width: 100%;
+}
+
+.inputField{
+    margin-top: .8em;
+    width: 12em;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    padding: .3em;
+    padding-left: .5em;
+    border-radius: .5em;
+    box-sizing: border-box;
+}
+.inputField:focus{
+    outline: var(--text-bg) solid 3px;
+}
+.longInputField{
+    width: 100%;
+}
+.optionInputField{
+    width: 100%;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    height: 1.9em;
+    border-left: 2px solid var(--text-bg);
+}
+
+.selectInputField{
+    margin-top: .8em;
+    width: 12em;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    padding: .3em;
+    border-top-left-radius: .5em;
+    border-bottom-left-radius: .5em;
+    height: 1.9em;
+}
+
+.errorInputField{
+    border: 2px solid var(--error);
+    box-sizing: content-box;
+}
+.errorInputField:focus{
+    outline: var(--error) solid 2px;
+}
+
+.selectErrorInputField{
+    border: 2px solid var(--error);
+}
+.selectErrorInputField:focus{
+    outline: var(--error) solid 2px;
+}
+
+.error{
+    margin-top: .3em;
+    width: 100%;
+    height: 1.5em;
+    color: var(--error);
+    font-size: .8em;
+    position: absolute;
+    bottom: -1.5em;
+}
+
+.buttonContainer{
+    display: flex;
+    justify-content: center;
+}
+.submitButton{
+    min-width: fit-content;
+    max-width: 15em;
+    padding: .5em;
+    padding-left: 2em;
+    padding-right: 2em;
+    border: none;
+    border-radius: .5em;
+    margin: 1em 1em 0 1em;
+    max-height: 2.5em;
+}
+.submitButton:active{
+    transform: scale(0.98);
 }

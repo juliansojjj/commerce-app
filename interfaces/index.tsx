@@ -78,6 +78,7 @@ export type CartContextProps = {
     removeProduct:  (product: Product) => void;
     increaseAmount: ({ amount, product }: Item) => void;
     decreaseAmount: ({ amount, product }: Item) => void;
+    wipeCart: () => void;
 }
 
 //FORMS
@@ -106,5 +107,6 @@ export type CardPaymentFormData = {
     Expiration:string;
     Security_Code:number;
     Dues:string;
-    Document_data:number;
+    Document_Type:string;
+    Document_Data:number;
 }

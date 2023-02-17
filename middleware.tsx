@@ -12,7 +12,7 @@ import { useCartContext } from './app/Context/cart/CartStore';
     // middleware login
     if (req.nextUrl.pathname.startsWith('/signin')) {
       if(session){
-        return NextResponse.redirect('http://localhost:3000')
+        return NextResponse.redirect('/shop')
       }
       else return NextResponse.next();
     }
@@ -50,20 +50,18 @@ import { useCartContext } from './app/Context/cart/CartStore';
 
     if (req.nextUrl.pathname.startsWith('/payment')) {
       if (!session) {
-        console.log('middleware')
-        console.log(req.nextUrl.searchParams)
         const requestedPage = req.nextUrl.pathname;
         const url = req.nextUrl.clone();
         url.pathname = `/shop`;
         // redirige
         return NextResponse.redirect(url);
-      } else if(req.nextUrl.searchParams.get('p') != 'tarjeta') {
+      } else if(!req.nextUrl.searchParams.get('id')){
         const requestedPage = req.nextUrl.pathname;
         const url = req.nextUrl.clone();
         url.pathname = `/shop`;
         // redirige
         return NextResponse.redirect(url);
-    } 
+        }
 
     return NextResponse.next();
   }
@@ -71,7 +69,7 @@ import { useCartContext } from './app/Context/cart/CartStore';
     // middleware profile
     if (req.nextUrl.pathname.startsWith('/profile')) {
       if(!session){
-        return NextResponse.redirect('http://localhost:3000')
+        return NextResponse.redirect('/shop')
       }
       else return NextResponse.next();
     } 

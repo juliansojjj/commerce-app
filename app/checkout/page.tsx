@@ -56,7 +56,7 @@ export default function Checkout() {
     | 0
   >(0);
   const [alert,setAlert] = useState('');
-  const { items, removeProduct } = useCartContext();
+  const { items, removeProduct, wipeCart } = useCartContext();
   let subtotal: number = 0;
 
   if (items) {
@@ -128,10 +128,10 @@ export default function Checkout() {
               console.log(res)
             }else if( paymentOption == 'mercadopago'){
               //llamado a servicio de pago de mercadopago
-              router.push(`/payment/mercadopago`);
+              router.push(`/payment?p=mercadopago&id=${res.data.order.id}`);
             }else{
               //llamado a servicio de pago
-              router.push(`/payment?p=tarjeta&id=${res.data.order.id}`);
+              router.push(`/payment?p=tarjeta&id=${res.data.order.id}`)
             }
               })
               .catch(err=>{throw new Error(err)})

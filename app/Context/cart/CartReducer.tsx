@@ -4,7 +4,7 @@ import { CartState, Item, Product, InitialCartItem } from '../../../interfaces/i
 
 type CartAction = 
 | { type:'setInitialCart', payload:Item[]|InitialCartItem[]}
-| { type:'setSubtotal', payload:number}
+| { type:'wipeCart'}
 | { type:'addNewProduct', payload:Item}
 | { type:'removeProduct', payload:Product}
 | { type:'addExistingProduct', payload:Item}
@@ -18,15 +18,10 @@ export const CartReducer = (state:CartState,action:CartAction)=>{
                 items:action.payload
                 }
 
-        case 'setSubtotal':
-            if(state.items){
+        case 'wipeCart':
             return{
                 ...state,
-                subtotal:action.payload
-                }
-            }
-            return{
-                ...state
+                items:[]
                 }
             
         case 'addNewProduct':

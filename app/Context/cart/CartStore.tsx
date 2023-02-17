@@ -19,7 +19,8 @@ const CartContext = createContext<CartContextProps>({
     addProduct({ amount, product }) {},
     removeProduct(product) {},
     increaseAmount({ amount, product }){},
-    decreaseAmount({ amount, product }){}
+    decreaseAmount({ amount, product }){},
+    wipeCart(){}
 });
 
 const fetchInitialCart =(url:string)=>fetch(url)
@@ -155,14 +156,17 @@ export const CartContextProvider = ({ children }:Children) => {
         else dispatch({type:'removeProduct',payload:product});
     }
 
-    
+    const wipeCart = async()=>{
+        dispatch({type:'wipeCart'})
+    }
 
     const value = {
         items:state.items,
         addProduct,
         removeProduct, 
         increaseAmount,
-        decreaseAmount
+        decreaseAmount,
+        wipeCart
     }
     
     return (
