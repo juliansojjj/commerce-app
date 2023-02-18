@@ -22,17 +22,17 @@ export default function Menu({closeAnimation, closeMenu}:{closeAnimation:any, cl
         <div className={`${styles.container} ${closeAnimation ? styles.menuClosed : ''}`}>
             {user 
             ?
-            <Link href='/profile'>{user.name}</Link> 
+            <Link href='/profile'><h3 className={styles.title}>{user.name}</h3></Link> 
             : 
-            <Link href='/signin'>Iniciar sesión</Link>}
+            <Link href='/signin'><h3>Iniciar sesión</h3></Link>}
                 
-                <hr />
+                <div className={styles.hr}/>
                 <div className={styles.cartTitle}>
                     <ShoppingCart/>
                     <h3>Carrito de compras</h3>
                 </div>
+                
                 <MenuCart checkout='FALSE'/>
-                <hr />
                 {items?.length! > 0
                 ?
                 <Link href='/cart'>
@@ -44,6 +44,7 @@ export default function Menu({closeAnimation, closeMenu}:{closeAnimation:any, cl
                 </Link>
                 :
                 ''}
+                <div className={styles.hr}/>
         </div>
     )
 }

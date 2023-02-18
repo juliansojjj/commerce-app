@@ -20,7 +20,14 @@ export default function MenuCart({checkout}:{checkout:'TRUE'|'FALSE'}){
                             <div className={styles.cartItem} key={unit.product.id}>
                                 <img src={unit.product.image} alt={unit.product.name} />
                                 <div className={styles.itemInfo}>
+                                    <Link href={`/products/${unit.product.name
+                  .trim()
+                  .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+                  .toLowerCase()
+                  .split(" ")
+                  .join("-")}--${unit.product.type.trim().toLowerCase()}--${unit.product.id}`}>
                                     <div className={styles.itemInfoTitle}>{unit.product.name}</div>
+                                    </Link>
                                     <div>Cant: {unit.amount}</div>
                                     <div className={styles.itemInfoPrice}>${unit.amount*unit.product.price}</div>
                                 </div>

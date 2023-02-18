@@ -56,6 +56,9 @@
     display: flex;
     flex-direction: column;
     color: white;
+    max-height: 43em;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 /*
 .profile{
@@ -69,7 +72,7 @@
     position: relative;
 }
 .profileGeneral a{
-    text-decoration: none;
+    text-decoration: underline;
     color: white;
 }
 .profileSon{
@@ -89,6 +92,9 @@
     height: 4em;
     object-fit: cover;
     border-radius: .5em;
+}
+.profileSon a:hover{
+    color: var(--text-bg);
 }
 
 .favoriteButton{

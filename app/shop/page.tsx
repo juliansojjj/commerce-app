@@ -15,9 +15,9 @@ const fetchProducts = async () => {
 export default async function Shop() {
   const repo: any[] = [];
   const data = await fetchProducts();
-  const array = data.sort((a, b) => a.serialNumber - b.serialNumber);
+  const array = data.sort((a:any, b:any) => a.serialNumber - b.serialNumber);
 
-  array.forEach((item: any, i, arr) => {
+  array.forEach((item: any, i:number, arr:any) => {
     const repeat: any[] = [];
     //si es primero de array y primero repe
     if (i == 0 && item.serialNumber == arr[i + 1].serialNumber) {

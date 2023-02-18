@@ -1,6 +1,5 @@
 "use client"
 
-import { Suspense } from 'react';
 import styles from '../../order/order.module.css'
 import OrderCart from '../cart/OrderCart';
 
