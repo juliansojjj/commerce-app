@@ -43,3 +43,9 @@
 .orderDate{
     color: var(--text-bg);
 }
+
+.paginateInput{
+    display: flex;
+    background-color: white;
+    justify-content: center;
+}
