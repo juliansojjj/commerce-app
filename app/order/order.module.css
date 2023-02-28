@@ -17,6 +17,7 @@
     color: white;
     overflow-y: auto;
     overflow-x: hidden;
+    margin-top: 1em;
 }
 
 .order{
@@ -48,4 +49,19 @@
     display: flex;
     background-color: white;
     justify-content: center;
+}
+
+@media (max-width:1366px){
+    .order{
+        width: 25em;
+        min-height: 5em;
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+    }
+    .ordersContainer{
+        width: fit-content;
+    }
+}
+
+@media (max-width:800px){
 }

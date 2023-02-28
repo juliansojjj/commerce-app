@@ -26,7 +26,8 @@ export default function MenuCart({checkout}:{checkout:'TRUE'|'FALSE'}){
                   .toLowerCase()
                   .split(" ")
                   .join("-")}--${unit.product.type.trim().toLowerCase()}--${unit.product.id}`}>
-                                    <div className={styles.itemInfoTitle}>{unit.product.name}</div>
+                                    <div className={clsx(styles.itemInfoTitle,
+                                        { [styles.checkoutInfoTitle]: checkout == "TRUE" })}>{unit.product.name}</div>
                                     </Link>
                                     <div>Cant: {unit.amount}</div>
                                     <div className={styles.itemInfoPrice}>${unit.amount*unit.product.price}</div>

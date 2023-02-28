@@ -6,7 +6,6 @@ import styles from '../../cart/cart.module.css'
 import DeleteIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import Link from 'next/link';
 import CartAmount from './CartAmount';
-import { useEffect } from 'react';
 
 export default function MainCart(){
     const {items, removeProduct} = useCartContext() 
@@ -45,7 +44,7 @@ export default function MainCart(){
                     })}
                     <div>
                         <h4>Subtotal: ${subtotal}</h4>
-                        <Link href='/checkout'>Finalizar compra</Link>
+                        <Link href='/checkout' className={styles.buyButton}>Finalizar compra</Link>
                     </div>
             </div>
         )

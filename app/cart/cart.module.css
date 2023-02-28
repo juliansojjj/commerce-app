@@ -135,3 +135,25 @@
     background-color: white;
     width: 100%;
 }
+
+.buyButton{
+    border: 2px solid black;
+    border-radius: 1em;
+    height: 2.5em;
+    width: 15em;
+    font-size: .8em;
+    padding: .3em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white; 
+    margin-top: 1em;
+    text-decoration: none;
+    cursor: default;
+}
+.buyButton:focus{
+    color: black;
+}
+.buyButton:active{
+    transform: scale(0.98);
+}
