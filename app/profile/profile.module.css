@@ -52,8 +52,12 @@
     border: none;
     border-radius: .6em;
     padding: .7em;
-    max-width: 15em;
+    width: 12em;
     margin-bottom: 2em;
+    text-align: center;
+    font-size: .8em;
+    height: 2.5em;
+    box-sizing: border-box;
 }
 .signOutBtn:hover{
     background-color: var(--error);
@@ -64,6 +68,7 @@
 }
 
 .changePassBtn{
+    text-align: center;
     font-size: .8em;
     color: #efefef;
     background-color: var(--text-bg);
@@ -71,9 +76,11 @@
     border: none;
     border-radius: .6em;
     padding: .7em;
-    width: fit-content;
+    width: 12em;
+    height: 2.5em;
     cursor: default;
     margin-bottom: 3em;
+    box-sizing: border-box;
 }
 .changePassBtn:hover{
     color: white;

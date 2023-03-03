@@ -69,7 +69,7 @@ import { useCartContext } from './app/Context/cart/CartStore';
     // middleware profile
     if (req.nextUrl.pathname.startsWith('/profile')) {
       if(!session){
-        return NextResponse.redirect('/shop')
+        return NextResponse.redirect('http://localhost:3000/shop')
       }
       else return NextResponse.next();
     } 

@@ -7,7 +7,6 @@ import Image from 'next/image';
 import Icon from '../../../public/icon.svg'
 import MenuRounded from '@mui/icons-material/Menu';
 import MenuDisplay from '../menu/Menu'
-import { usePathname } from 'next/navigation';
 import { useCartContext } from '../../Context/cart/CartStore';
 import clsx from 'clsx';
 

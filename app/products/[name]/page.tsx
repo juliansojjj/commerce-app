@@ -1,5 +1,6 @@
 import styles from './products.module.css'
 import ProductForm from '../../components/product/ProductForm'
+import FavoriteButton from '../../components/product/FavoriteButton';
 
 const fetchData = async(type:string,id:number)=>{
     const res = await fetch(`http://localhost:8000/api/products/model/${type}-${id}`, { cache: 'no-store' });
@@ -22,7 +23,7 @@ export default async function Product({params}: {
                 <img src={item.image} alt={item.name} />
             </div>
             <div className={styles.info}>
-                <div className={styles.infoTitle}>{item.name}</div>
+                <div className={styles.infoTitle}>{item.name} <FavoriteButton itemId={item.id}/> </div>
                 <div>${item.price}</div>
                 <ProductForm stock={item.stock} product={item}/>
             </div>

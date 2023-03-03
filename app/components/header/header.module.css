@@ -70,6 +70,12 @@
     padding: .5em;
     color: black;
 }
+.productsLink svg{
+    background-color: white;
+    padding: .3em;
+    border-radius: .4em;
+    fill: black;
+}
 .mainLink{
     display: contents;
 }

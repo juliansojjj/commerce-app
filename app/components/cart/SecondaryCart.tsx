@@ -7,17 +7,15 @@ import DeleteIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import Link from 'next/link';
 import clsx from 'clsx';
 
-export default function MenuCart({checkout, disabled}:{checkout:'TRUE'|'FALSE', disabled:'TRUE'|'FALSE'}){
+export default function SecondaryCart(){
     const {items, removeProduct} = useCartContext() 
     
     if(items && items.length > 0){
         return(
-            <div className={clsx(styles.cartItemsContainer,
-                {[styles.checkoutContainer] : checkout == 'TRUE'})}
-                >
+            <div className={styles.cartItemsContainer}>
                     {items?.map((unit:Item)=>{
                         return(
-                            <div className={styles.cartItem} key={unit.product.id}>
+                            <div className={styles.secondaryCartItem} key={unit.product.id}>
                                 <img src={unit.product.image} alt={unit.product.name} />
                                 <div className={styles.itemInfo}>
                                     <Link href={`/products/${unit.product.name
@@ -26,18 +24,11 @@ export default function MenuCart({checkout, disabled}:{checkout:'TRUE'|'FALSE', 
                   .toLowerCase()
                   .split(" ")
                   .join("-")}--${unit.product.type.trim().toLowerCase()}--${unit.product.id}`}>
-                                    <div className={clsx(styles.itemInfoTitle,
-                                        { [styles.checkoutInfoTitle]: checkout == "TRUE" })}>{unit.product.name}</div>
+                                    <div className={clsx(styles.itemInfoTitle,styles.checkoutInfoTitle)}>{unit.product.name}</div>
                                     </Link>
                                     <div>Cant: {unit.amount}</div>
                                     <div className={styles.itemInfoPrice}>${unit.amount*unit.product.price}</div>
                                 </div>
-                                {checkout == 'TRUE' || disabled == 'TRUE'
-                                ? ''
-                                :
-                                <div className={styles.deleteButton} onClick={()=>removeProduct(unit.product)}>
-                                    <DeleteIcon />
-                                </div>}
                             </div>
                         )
                     })}

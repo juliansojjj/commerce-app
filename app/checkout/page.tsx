@@ -9,7 +9,7 @@ import clsx from "clsx";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import AddressesSkeleton from "../components/checkout/addressesSkeleton";
-import MenuCart from "../components/cart/MenuCart";
+import SecondaryCart from "../components/cart/SecondaryCart";
 import { useCartContext } from "../Context/cart/CartStore";
 import { nanoid } from "nanoid";
 
@@ -106,7 +106,26 @@ export default function Checkout() {
   };
   
   const handleOrder = async()=>{
-    if(addressLocation && paymentOption){
+    if(addressLocation && paymentOption && sendOption == 'sucursal'){
+              const orderId = nanoid(10)
+              const userCart:{}[] = []
+              items?.map(unit=>{
+                userCart.push({amount:unit.amount,productId:unit.product.id})
+              })
+              console.log(orderId)
+              await axios.post(`http://localhost:8000/api/checkout/order/after/${user?.id}`,{
+                id: orderId,
+                payment_option:paymentOption,
+                send_option:sendOption,
+                address_id:addressLocation,
+                items:userCart
+              })
+              .then(res=>{
+                router.push(`/checkout/address/sucursal/${res.data.order.id}?pc=${postalCode}`);
+              })
+              .catch(err=>{throw new Error(err)})
+    }
+    else if(addressLocation && paymentOption){
               const orderId = nanoid(10)
               const userCart:{}[] = []
               items?.map(unit=>{
@@ -242,7 +261,7 @@ export default function Checkout() {
         <div>
           <h2>Detalles del carrito</h2>
           <div className={styles.details}>
-            <MenuCart checkout="TRUE" />
+            <SecondaryCart />
             <div className={styles.pricesContainer}>
               {subtotal ? (
                 <>

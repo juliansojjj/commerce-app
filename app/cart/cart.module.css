@@ -102,9 +102,9 @@
    border-radius: .3em;
 }
 .numberContainer{
-    padding: .3em;
+    padding: .4em;
     padding-left: .6em;
-    width: .7em;
+    width: 1em;
 }
 .arrowsContainer{
     display: flex;

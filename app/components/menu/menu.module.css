@@ -18,10 +18,14 @@
     text-decoration: none;
     color: black;
 }
+.container a:hover{
+    text-decoration: underline;
+}
 
 .menuClosed{
     animation-name: menuSlideOut;
     animation-duration: .41s;
+    
 }
 
 @keyframes menuSlideIn{
@@ -33,22 +37,28 @@
     0%  {right: 0}
 }
 
-.cartTitle{
+.closeButtonContainer{
+    display: none;
+}
+.responsiveShopContainer{
+    display: none;
+}
+
+.menuCategory{
     display: flex;
+    flex-direction: row;
     padding-left: 1em;
     width: 100%;
     margin-top: 1em;
+    padding-left: 3em;
+    align-items: center;
 }
-.cartTitle h3{
-    margin: 0;
-    padding-left: .6em;
+.menuCategory a:hover{
+    text-decoration: underline;
 }
 .title{
     margin: 0;
-    margin-top: 1em;
-}
-.title:hover{
-    text-decoration: underline;
+    padding-left: .7em;
 }
 
 .hr{
@@ -91,6 +101,17 @@
     align-items: center;
     justify-items: center;
     margin-top: .4em;
+    width: 100%;
+}
+
+.secondaryCartItem{
+    display: grid;
+    grid-template-columns: 1.5fr 2fr .75fr;
+    height: 7em;
+    align-items: center;
+    justify-items: center;
+    margin-top: .4em;
+    width: 100%;
 }
 
 .itemInfo{
@@ -128,6 +149,12 @@
     border-radius: .5em;
     object-fit: cover;
 }
+.secondaryCartItem img{
+    width: 6em;
+    height: 6em;
+    border-radius: .5em;
+    object-fit: cover;
+}
 
 .deleteButton{
     margin-right: .5em;
@@ -154,4 +181,53 @@
 }
 .buyButton:active{
     transform: scale(0.98);
+}
+
+@media (max-width:800px){
+    .cartItem{
+        display: grid;
+        grid-template-columns: 1fr 1fr 4fr;
+        height: 7em;
+        align-items: center;
+        justify-items: flex-end;
+        padding-right: 1em;
+        box-sizing: border-box;
+    }
+    .cartItem img{
+        margin-right: 1em;
+    }
+
+    .container{
+        width: 100%;
+    }
+    .closeButtonContainer{
+        display: flex;
+        width: 100%;
+        justify-content: flex-end;
+    }
+    .closeButtonContainer svg{
+        padding: .5em;
+    }
+    .responsiveShopContainer{
+        display: flex;
+        width: 100%;
+        padding-left: 3em;
+    }
+    
+    @keyframes menuSlideOut{
+        100%{right: -50em}
+        0%  {right: 0}
+    }
+}
+@media (max-width:600px){
+    @keyframes menuSlideOut{
+        100%{right: -39em}
+        0%  {right: 0}
+    }
+}
+@media (max-width:400px){
+    @keyframes menuSlideOut{
+        100%{right: -30em}
+        0%  {right: 0}
+    }
 }

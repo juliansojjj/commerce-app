@@ -1,5 +1,5 @@
 .container{
-    padding-top: 6em;
+    padding-top: 7.5em;
     color: white;
     display: flex;
     flex-direction: column;
@@ -12,7 +12,7 @@
 }
 
 .imageContainer{
-    width: 65%;
+    width: 60%;
     height: 40em;
     box-sizing: border-box;
     padding-right: 1em;
@@ -35,6 +35,9 @@
 .infoTitle{
     font-size: 1.5em;
     margin-bottom: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 
@@ -61,7 +64,7 @@
     border: none;
     display: flex;
     align-items: center;
-    padding: .8em;
+    padding: .6em;
     padding-left: 1.2em;
     padding-right: 1.2em;
     border-radius: 1em;
@@ -87,7 +90,7 @@
 .numberContainer{
     padding: .3em;
     padding-left: .6em;
-    width: .7em;
+    width: 1em;
 }
 .arrowsContainer{
     display: flex;
@@ -109,4 +112,24 @@
     position: absolute;
     top: 3.5em;
 
+}
+
+@media (max-width:1366px){
+    .info{
+        font-size: .9em;
+    } 
+    .cartButton{
+        font-size: .8em;
+        padding: .6em;
+        padding-left: .8em;
+        padding-right: .8em;
+    }
+}
+@media (max-width:800px){
+    .product{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+    }
 }

@@ -43,7 +43,6 @@ export default function ProductForm({stock, product}:{stock:number,product:Produ
                 <ShoppingCart />
                 <div className={vietnamPro.className}>Agregar al carrito</div>
             </button>
-            <FavoriteButton itemId={product.id}/>
         </div>
     )
 }

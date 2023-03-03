@@ -73,7 +73,7 @@ export default function CardForm({ operationId, operationType }: { operationId: 
   }, []);
 
   const fetchCurrentOrder = async()=>{
-    return await axios.get(`http://localhost:8000/api/orders/current/${operationId}---${operationType}`)
+    return await axios.get(`http://localhost:8000/api/orders/${operationId}`)
   }
 
 

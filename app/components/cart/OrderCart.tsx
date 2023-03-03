@@ -34,7 +34,7 @@ export default function OrderCart({orderCart}:{orderCart:any}){
                 )}>
                     {data?.map((unit:any)=>{
                         return(
-                            <div className={styles.cartItem} key={unit.product.id}>
+                            <div className={styles.secondaryCartItem} key={unit.product.id}>
                                 <img src={unit.product.image} alt={unit.product.name} />
                                 <div className={styles.itemInfo}>
                                     <div className={styles.itemInfoTitle}>{unit.product.name}</div>

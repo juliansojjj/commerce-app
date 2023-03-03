@@ -37,7 +37,7 @@ export default function CartAmount({stock, amount, product}:{stock:number, amoun
         <div className={styles.amountComponent}>
             <div className={styles.input}>
                 <div className={styles.numberContainer}>
-                    <div>{amount}</div>
+                    {amount}
                 </div>
                 <div className={styles.arrowsContainer}>
                     <ArrowUp onClick={()=>handleAmount('up')} className={styles.arrow} />

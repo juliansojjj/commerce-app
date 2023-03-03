@@ -6,12 +6,12 @@ import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import useSWR from "swr";
 import { AddressFormData } from "../../../interfaces/index";
-import { Be_Vietnam_Pro } from "@next/font/google";
 import clsx from "clsx";
 import { useAuthContext } from "../../Context/AuthStore";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { Be_Vietnam_Pro } from "@next/font/google";
 
 const vietnamPro = Be_Vietnam_Pro({ weight: "400" });
 

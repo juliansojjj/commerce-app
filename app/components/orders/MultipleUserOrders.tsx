@@ -10,7 +10,11 @@ const fetcher = (url:string)=>fetch(url).then(res=>res.json())
 export default function MultipleUserOrders(){
     const {user} = useAuthContext()
     const {data,error} = useSWR(`http://localhost:8000/api/orders/user/${user?.id}`,fetcher, {suspense:true})
-
+    
+    if(data?.order.length === 0){
+        return(<div>No hay órdenes de compra</div>)
+    }
+    
     return(
         <div className={styles.ordersContainer}>
             {data?.order.map((item:any)=>{
