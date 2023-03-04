@@ -8,7 +8,7 @@
 }
 
 .alert{
-    position: absolute;
+    position: fixed;
     background-color: var(--content-bg);
     top: 8em;
     width: fit-content;
@@ -459,5 +459,63 @@
     }
     .paymentOption{
         width: 100%;
+    }
+}
+@media (max-width:800px){
+    .outlineCircle{
+        display: none;
+    }
+    .filledCircle{
+        display: none;
+    }
+    .addressContainer{
+        grid-template-columns: 1fr 1fr .2fr;
+        color: var(--text-bg);
+        width: 24em;
+        height: 9em;
+        font-size: .8em;
+    }
+    
+    .currentAddressContainer{
+        grid-template-columns: 1fr 1fr .2fr;
+        padding-left: .5em;
+        width: 24em;
+        height: 9em;
+    }
+    .details{
+        width: 100%;
+        height: fit-content;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+    }
+    .pricesContainer{
+        margin-top: 1em;
+        padding-left: 2em;
+    }
+    .multipleOptionsContainer{
+        width: 100%;
+    }
+    
+    .optionContainer{
+        grid-template-columns: 1fr 1fr 1fr;
+        width: 24em;
+        height: 9em;
+        padding-right: 1em;
+    }
+    .currentOptionContainer{
+        grid-template-columns: 1fr 1fr 1fr;
+        width: 24em;
+        height: 9em;
+        padding-right: 1em;
+    }
+    .payment{
+        width: 90%;
+    }
+    .paymentOption{
+        grid-template-columns: .3fr 1fr;
+    }
+    .currentPaymentOption{
+        grid-template-columns: .3fr 1fr;
     }
 }

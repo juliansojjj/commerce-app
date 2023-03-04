@@ -27,20 +27,22 @@ export default function Menu({closeAnimation, closeMenu}:{closeAnimation:any, cl
     return(
         <div className={`${styles.container} ${closeAnimation ? styles.menuClosed : ''}`}>
             <div className={styles.closeButtonContainer}> <CloseIcon onClick={closeMenu}/> </div>
-            <div className={styles.responsiveShopContainer}> 
-            <ShopIcon/>
-            <Link href='/shop' onClick={closeMenu}><h4 className={styles.title}>Ir a la tienda</h4></Link> 
-            </div>
+            
+            <Link href='/shop' onClick={closeMenu} className={styles.responsiveShopContainer}>
+                <ShopIcon/>
+                <h4 className={styles.title}>Ir a la tienda</h4>
+            </Link> 
+            
             {user 
-            ?   <div className={styles.menuCategory}>
+            ?   <Link href='/profile' className={styles.menuCategory}>
                     <AccountIcon />
-                    <Link href='/profile'><h4 className={styles.title} onClick={closeMenu}>{user.name}</h4></Link>
-                </div>
+                    <h4 className={styles.title} onClick={closeMenu}>{user.name}</h4>
+                </Link>
             : 
-            <div className={styles.menuCategory}>
+            <Link href='/signin' className={styles.menuCategory}>
                     <AccountIcon />
-                    <Link href='/signin'><h4 className={styles.title} onClick={closeMenu}>Iniciar sesión</h4></Link>
-                </div>
+                    <h4 className={styles.title} onClick={closeMenu}>Iniciar sesión</h4>
+                </Link>
             }
                 
                 <div className={styles.menuCategory}>

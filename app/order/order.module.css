@@ -14,6 +14,8 @@
     width: 40%; 
     height: fit-content;
     box-sizing: border-box;   
+    background-color: var(--content-bg);
+    justify-content: space-between;
 }
 
 .ordersContainer{
@@ -27,19 +29,14 @@
     margin-top: 1em;
 }
 
-.orderInfoContainer{
-    margin-top: .5em;
-    background-color: var(--content-bg);
-    border-radius: 1em;
-    box-sizing: border-box;
-    padding: .5em;
-    color: var(--text-bg);
-}
-
 .orderCartCell{
     width: fit-content;
     height: fit-content;
     grid-row: span 2;
+}
+.orderInfo{
+    color: var(--text-bg);
+    margin-top: 1em;
 }
 
 .order{
@@ -53,14 +50,8 @@
     align-items: center;
     justify-items: center;
     box-sizing: border-box;
-}
-
-.order a{
-    text-decoration: underline;
     color: white;
-}
-.order a:hover{
-    color: var(--text-bg);
+    text-decoration: none;
 }
 
 .orderDate{
@@ -75,6 +66,8 @@
 
 .alert{
     margin: 0;
+    margin-top: 1em;
+    margin-bottom: 1em;
     text-align: center;
     color: var(--alert);
 }
@@ -102,6 +95,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 1em;
 }
 .stateCircle{
     width: 1em;
@@ -142,7 +136,13 @@
     .orderContainer{
         display: flex;
         flex-direction: column;
-        width: 100%; 
+        width: 70%; 
         align-items: center;
+    }
+}
+
+@media (max-width:600px){
+    .orderContainer{
+        width: 90%; 
     }
 }

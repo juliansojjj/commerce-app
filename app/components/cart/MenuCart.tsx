@@ -21,11 +21,11 @@ export default function MenuCart({checkout, disabled}:{checkout:'TRUE'|'FALSE', 
                                 <img src={unit.product.image} alt={unit.product.name} />
                                 <div className={styles.itemInfo}>
                                     <Link href={`/products/${unit.product.name
-                  .trim()
-                  .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-                  .toLowerCase()
-                  .split(" ")
-                  .join("-")}--${unit.product.type.trim().toLowerCase()}--${unit.product.id}`}>
+                                    .trim()
+                                    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+                                    .toLowerCase()
+                                    .split(" ")
+                                    .join("-")}--${unit.product.type.trim().toLowerCase()}--${unit.product.id}`}>
                                     <div className={clsx(styles.itemInfoTitle,
                                         { [styles.checkoutInfoTitle]: checkout == "TRUE" })}>{unit.product.name}</div>
                                     </Link>

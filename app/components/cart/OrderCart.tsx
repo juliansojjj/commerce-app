@@ -12,12 +12,12 @@ const fetchOrderCart =(orderCart:any)=>{
                 amount:unit.amount,
                 product:undefined
             }
-            await fetch(`http://localhost:8000/api/products/${unit.item_id}`)
+            await fetch(`http://localhost:8000/api/orders/product/${unit.order_item_id}`)
             .then((res)=>{
                 return res.json()
             })
             .then(product=>{
-                obj.product = product.product;
+                obj.product = product.orderProduct;
                 resolve(obj)
             })
             .catch(err=>reject(err))

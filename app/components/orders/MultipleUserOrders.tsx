@@ -20,11 +20,11 @@ export default function MultipleUserOrders(){
             {data?.order.map((item:any)=>{
                 const orderDate = new Date(item.createdAt)
                 return(
-                    <div className={styles.order} key={item.id}>
-                        <Link href={`/order/${item.id}`}>{item.id}</Link>
-                        <div className={styles.orderDate}>{`${orderDate.getDate()}/${orderDate.getMonth()}/${orderDate.getFullYear()}`}</div>
-                        <div>${item.total_price}</div>
-                    </div>
+                        <Link href={`/order/${item.id}`} className={styles.order} key={item.id}>
+                            {item.id}
+                            <div className={styles.orderDate}>{`${orderDate.getDate()}/${orderDate.getMonth()}/${orderDate.getFullYear()}`}</div>
+                            <div>${item.total_price}</div>
+                        </Link>
                 )
             })}
         </div>

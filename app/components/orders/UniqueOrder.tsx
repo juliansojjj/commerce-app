@@ -17,8 +17,8 @@ const addressFetch = async(url:string)=>fetch(url).then(res=>res.json())
 export default function UniqueOrder({orderData, orderCart}:{orderData:any,orderCart:any}){
     const {data} = useSWR(`http://localhost:8000/api/checkout/address/old/${orderData?.address_id}`,addressFetch)
     const { wipeCart } = useCartContext();
-    console.log(orderData)
-    console.log(data)
+    //console.log(orderData)
+    //console.log(data)
     
     useEffect(() => {
         wipeCart();
@@ -26,9 +26,9 @@ export default function UniqueOrder({orderData, orderCart}:{orderData:any,orderC
 
     return(
         <div className={styles.orderContainer}>
-                <div>
+                <div >
                     <div>Orden <b>{orderData?.id}</b></div>
-                    <div className={styles.orderInfoContainer}>
+                    <div className={styles.orderInfo}>
                         <div>
                             <div>{data?.address.province}</div>
                             <div>{data?.address.street} {data?.address.number}</div>
@@ -39,6 +39,7 @@ export default function UniqueOrder({orderData, orderCart}:{orderData:any,orderC
                     ? 
                     <div>
                         {orderData?.user_received && <h4>Recibiste el pedido</h4>}
+                        {orderData?.post_dispatched ? <h4>El pedido está en camino</h4> : <h4>El pedido se está preparando</h4>}
                         <OrderState sent={orderData?.post_dispatched} postReceived={orderData?.user_received ? true : false} userReceived={orderData?.user_received}/>
                     </div>
                     : 

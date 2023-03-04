@@ -96,7 +96,7 @@
 
 .cartItem{
     display: grid;
-    grid-template-columns: 1.5fr 2fr .75fr;
+    grid-template-columns: 1fr 1fr .5fr;
     height: 7em;
     align-items: center;
     justify-items: center;
@@ -186,11 +186,12 @@
 @media (max-width:800px){
     .cartItem{
         display: grid;
-        grid-template-columns: 1fr 1fr 4fr;
+        grid-template-columns: 1fr 2fr 2fr;
         height: 7em;
         align-items: center;
         justify-items: flex-end;
-        padding-right: 1em;
+        padding-left: 1em;
+        padding-right: .5em;
         box-sizing: border-box;
     }
     .cartItem img{
