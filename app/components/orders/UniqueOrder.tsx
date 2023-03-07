@@ -17,7 +17,7 @@ const addressFetch = async(url:string)=>fetch(url).then(res=>res.json())
 export default function UniqueOrder({orderData, orderCart}:{orderData:any,orderCart:any}){
     const {data} = useSWR(`http://localhost:8000/api/checkout/address/old/${orderData?.address_id}`,addressFetch)
     const { wipeCart } = useCartContext();
-    //console.log(orderData)
+    console.log(orderData)
     //console.log(data)
     
     useEffect(() => {
@@ -29,18 +29,34 @@ export default function UniqueOrder({orderData, orderCart}:{orderData:any,orderC
                 <div >
                     <div>Orden <b>{orderData?.id}</b></div>
                     <div className={styles.orderInfo}>
-                        <div>
                             <div>{data?.address.province}</div>
                             <div>{data?.address.street} {data?.address.number}</div>
-                        </div>
+                            <div className={styles.orderInfoSon}>
+                                Importe: <span>${orderData?.total_price}</span>
+                            </div>
+                            <div className={styles.orderInfoSon}>
+                                Método de pago: <span>{orderData?.payment_option}</span>
+                            </div>
+                            <div className={styles.orderInfoSon}>
+                                Tipo de envío: <span>{orderData?.send_option}</span>
+                            </div>
+                            {orderData?.sucursal && 
+                            <div className={styles.orderInfoSon}>
+                                Sucursal de envío: <span>{orderData?.sucursal}</span>
+                            </div>}
                     </div>
                     <div>
                     {orderData?.user_discharged 
                     ? 
                     <div>
-                        {orderData?.user_received && <h4>Recibiste el pedido</h4>}
-                        {orderData?.post_dispatched ? <h4>El pedido está en camino</h4> : <h4>El pedido se está preparando</h4>}
-                        <OrderState sent={orderData?.post_dispatched} postReceived={orderData?.user_received ? true : false} userReceived={orderData?.user_received}/>
+                        {orderData?.user_received 
+                            ? <h4>Recibiste el pedido</h4> 
+                            : orderData?.sucursal && orderData?.sucursal_received 
+                                ? <h4>El pedido está en la sucursal</h4>
+                                : orderData?.post_dispatched 
+                                    ? <h4>El pedido está en camino</h4> 
+                                    : <h4>El pedido se está preparando</h4>}
+                        <OrderState sent={orderData?.post_dispatched} sucursalReceived={orderData?.sucursal ? orderData?.sucursal_received : orderData?.user_received} userReceived={orderData?.user_received}/>
                     </div>
                     : 
                     <div>

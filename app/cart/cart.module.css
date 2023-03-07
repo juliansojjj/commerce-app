@@ -157,3 +157,19 @@
 .buyButton:active{
     transform: scale(0.98);
 }
+
+@media (max-width:800px){
+    .cartItem{
+        width: 20em;
+        grid-template-columns: 1fr 2fr .75fr;
+        height: 7em;
+        font-size: .9em;
+    }
+    .cartItem img{
+        width: 5em;
+        height: 5em;
+        border-radius: .5em;
+        object-fit: cover;
+        margin-right: 1em;
+    }
+}

@@ -68,41 +68,13 @@ export default async function Shop() {
       repo.push(item);
     }
   });
-
+  
   return (
     <div className={styles.shopContainer}>
       {repo.map((item) => {
-        if (!item.rep)
           return (
-            <div className={styles.generalCard}>
-              <div className={styles.favoriteButton}>
-                <FavoriteButton itemId={item.id} />
-              </div>
-              <Link
-                href={`/products/${item.name
-                  .trim()
-                  .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-                  .toLowerCase()
-                  .split(" ")
-                  .join("-")}--${item.type.trim().toLowerCase()}--${item.id}`}
-                key={item.id}
-                className={styles.productCard}
-              >
-                <img
-                  src={item.image}
-                  alt={item.name}
-                  className={styles.cardImage}
-                />
-                <div className={styles.textContainer}>
-                  <div>{item.name}</div>
-                  <div className={styles.price}>${item.price}</div>
-                </div>
-              </Link>
-            </div>
-          );
-        else if (item.rep) {
-          return (<ProductCard data={item.repeat}/>);
-        }
+            <ProductCard repeat={item.rep} data={item.rep ? item.repeat : item}/>
+          )
       })}
     </div>
   );

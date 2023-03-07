@@ -129,6 +129,9 @@
 .errorInputField:focus{
     outline: var(--error) solid 2px;
 }
+.sucursalInputField{
+    width: fit-content;
+}
 
 .error{
     margin-top: .3em;
@@ -143,6 +146,14 @@
     position: absolute;
     right: -16em;
     top: 2.7em;
+}
+
+.sucursalError{
+    margin-top: .3em;
+    width: 100%;
+    height: 1.5em;
+    color: var(--error);
+    font-size: .8em;
 }
 
 .buttonContainer{

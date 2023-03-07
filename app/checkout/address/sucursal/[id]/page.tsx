@@ -91,7 +91,7 @@ export default function Sucursal({params, searchParams}: {
                 <label htmlFor="sucursal">Sucursales según su código postal</label>
                     <select
                     id="sucursal"
-                    className={clsx(styles.inputField, vietnamPro.className,{
+                    className={clsx(styles.inputField, styles.sucursalInputField, vietnamPro.className,{
                         [styles.errorInputField] : errors.sucursal
                     })}
                     {...register("sucursal", {
@@ -102,7 +102,7 @@ export default function Sucursal({params, searchParams}: {
                         return <option value={item} key={item}>{item}</option>;
                     })}signOut
                     </select>
-                    <div className={styles.error}>{errors?.sucursal?.message}</div>
+                    <div className={styles.sucursalError}>{errors?.sucursal?.message}</div>
                     <button type='submit' className={clsx(styles.submitButton,vietnamPro.className)}>Seleccionar</button>
             </form>
         </div>

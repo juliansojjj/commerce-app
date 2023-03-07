@@ -6,6 +6,7 @@
     padding-top: 7.5em;
     background-color: var(--main-bg);
     align-items: center;
+    padding-bottom: 2em;
 }
 
 .dashboardContainer{
@@ -20,48 +21,64 @@
 .shopContainer{
     display: grid;
     height: 100%;
+    width: 80%;
     grid-template-columns: repeat(3,1fr);
-    gap: 2em 5em;
+    justify-content: center;
+    justify-items: center;
+    row-gap: 4em;
+    padding-bottom: 4em;
 }
 .shopContainer a{
     text-decoration: none;
 }
 
-.productCard{
-    background-color: var(--content-bg);
-    width: 22em;
-    height: 28em;
-    border-radius: 1em;
-    box-sizing: border-box;
-    color: var(--text-bg);
-}
-.productCard a{
-    color: var(--text-bg);
+.generalCard{
+    position: relative;
+    width: 75%;
 }
 
-.cardImage{
+.productCard{
+    width: 100%;
+    height: 25em;
+    border-radius: 1em;
+    box-sizing: border-box;
+    color: white;
+    background-color: var(--dark-content-bg);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    align-items: center;
+}
+
+.productCard img{
     width: 100%;
     height: 18em;
     object-fit: cover;
     border-top-left-radius: 1em;
     border-top-right-radius: 1em;
-    position: relative;
 }
 .textContainer{
-    height: 10em;
-    padding: 1.5em;
+    width: 90%;
+    padding: 1em;
+    margin-bottom: 1.5em;
 }
 .price{
     margin-top: 1em;
+    color: var(--text-bg);
 }
 
-.productCard:hover{
-    transform: scale(0.98);
-    transition: all 0.05s ease-out;
+.generalCard:hover .productCard img{
+    height: 25em;
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
+    transition: all 0.15s ease-in-out;
 }
-.productCard:active{
-    filter: saturate(0%);
-    transform: scale(0.96);
+.generalCard:hover .textContainer{
+    display: none;
+}
+.generalCard:hover .carrouselContainer{
+    bottom: 1em;
+    transition: all 0.15s ease-in-out;
 }
 
 .favoriteButton{
@@ -71,20 +88,18 @@
     right: 1em;
 }
 
-.generalCard{
-    position: relative;
-    height: 18em;
-}
-
 .carrouselContainer{
     display: flex;
     width: 100%;
     position: absolute;
     justify-content: space-evenly;
     z-index: 100;
-    bottom: 0;
+    bottom: 7.5em;
     /*background-color: rgba(0, 0, 0, 0.25);*/
     padding: .2em;
+}
+.onHoverCarrousel{
+    bottom: 0;
 }
 
 .itemContainer{
@@ -112,4 +127,22 @@
     height: 28em;
     border-radius: 1em;
     box-sizing: border-box;
+}
+
+@media (max-width:1366px){
+    .shopContainer{
+        width: 80%;
+        grid-template-columns: repeat(2,1fr);
+        row-gap: 4em;
+    }
+}
+
+@media (max-width:800px){
+    .shopContainer{
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+    }
 }

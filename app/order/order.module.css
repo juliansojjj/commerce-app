@@ -38,6 +38,9 @@
     color: var(--text-bg);
     margin-top: 1em;
 }
+.orderInfoSon{
+    margin-top: .5em;
+}
 
 .order{
     margin-top: 1em;
