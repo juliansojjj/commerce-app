@@ -3,17 +3,24 @@ import {Be_Vietnam_Pro} from '@next/font/google';
 import Image from 'next/image';
 import Logo from '../public/logo.svg'
 import ArrowDown from '../public/icons/arrow-down.svg'
+import clsx from 'clsx';
 
 const vietnamPro = Be_Vietnam_Pro({weight:'400'});
+
 
 export default function Home(){
     return(
         <div>
             <main className={styles.main}>
                 <h1 className={styles.mainTitle}>
-                    <Image src={Logo} alt='Flagon Logo' height={170} className={styles.mainLogo}/>
+                    <Image 
+                        src={Logo} 
+                        alt='Flagon'
+                        fill
+                        style={{objectFit:'contain', objectPosition:'center'}}
+                        className={styles.mainLogo}/>
                 </h1>
-                <h2 className={`${vietnamPro.className} ${styles.mainTitle}`}>Calidad y técnica en materiales únicos</h2>
+                <h2 className={clsx(vietnamPro.className, styles.subTitle)}>Calidad y técnica en materiales únicos</h2>
                 <div className={styles.arrowContainer}>
                     <Image src={ArrowDown} alt=''/>
                 </div>

@@ -1,26 +1,33 @@
 .main{
+    position: relative;
     display: flex;
     flex-direction: column;
     height: 100vh;
     width: 100%;
-    padding: 10em;
+    padding-top: 10em;
+    padding-right: 10em;
     color: white;
     align-items: flex-end;
     background-image:   linear-gradient(to bottom, rgba(255, 255, 255, 0) 60%, rgba(0, 0, 0, .9)), 
                         linear-gradient(to right, rgba(255, 255, 255, 0) 40%, rgba(0, 0, 0, .9)), 
                         url("../public/home_bg.png");
-    /*background-position-y: -7em;*/
     background-size: cover;
     background-repeat: no-repeat;
     box-sizing: border-box;
+    background-position: center;
+    
 }
 .mainTitle{
     margin: 0;
-    margin-bottom: 1em;
+    position: absolute;
+    width: 594px;
+    height: 170px;
 }
 .mainLogo{
-    margin-top: 3em;
     filter: invert(98%) sepia(1%) saturate(4%) hue-rotate(135deg) brightness(114%) contrast(100%);
+}
+.subTitle{
+    margin-top: 9em;
 }
 
 .arrowContainer{
@@ -31,5 +38,60 @@
     margin-top: 25em;
 }
 
-/*
-@media screen and (){}*/
+@media (max-width:1024px){
+    .main{
+        background-image:   linear-gradient(to bottom, rgba(255, 255, 255, 0) 20%, rgba(0, 0, 0, .9)), 
+                        linear-gradient(to right, rgba(255, 255, 255, 0) 100%, rgba(0, 0, 0, .9)), 
+                        url("../public/home_bg.png");
+        padding-right: 0;
+        align-items: center;
+        justify-content: center;
+        padding-top: 0;
+    }
+    .subTitle{
+        margin-top: 29em;
+        text-align: center;
+    }
+}
+
+
+@media (max-width:800px){
+    .mainLogo{
+        max-height: 140px;
+    }
+    .mainTitle{
+        width: 490px;
+    }
+    .subTitle{
+        font-size: 1.2em;
+        margin-top: 32em;
+    }
+}
+
+
+@media (max-width:600px){
+    .mainLogo{
+        max-height: 100px;
+    }
+    .mainTitle{
+        height: 100px;
+        width: 350px;
+    }
+    .subTitle{
+        font-size: 1em;
+        margin-top: 38em;
+    }
+}
+
+@media (max-width:500px){
+    .mainLogo{
+        max-height: 70px;
+    }
+    .mainTitle{
+        width: 245px;
+    }
+    .subTitle{
+        font-size: .9em;
+        margin-top: 40em;
+    }
+}

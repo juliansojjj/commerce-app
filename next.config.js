@@ -7,6 +7,11 @@ const nextConfig = {
       {loader:'@next/font/google', options: { subsets: ['latin'] } }
     ]
   },
+  images: {
+    dangerouslyAllowSVG: true,
+    contentDispositionType: 'attachment',
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+  },
 }
 
 module.exports = nextConfig
