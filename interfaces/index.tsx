@@ -87,6 +87,15 @@ export type SignInFormData = {
     password: string;
 }
 
+export type SignUpFormData = {
+    name: string;
+    surname: string;
+    email: string;
+    password: string;
+    repeatPassword: string;
+    captcha: string;
+}
+
 export type AddressFormData = {
     Name_Surname:string;
     Phone:string;

@@ -12,7 +12,7 @@ import { useCartContext } from './app/Context/cart/CartStore';
     // middleware login
     if (req.nextUrl.pathname.startsWith('/signin')) {
       if(session){
-        return NextResponse.redirect('/shop')
+        return NextResponse.redirect('http://localhost:3000/shop')
       }
       else return NextResponse.next();
     }
