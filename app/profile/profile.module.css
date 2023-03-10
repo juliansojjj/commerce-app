@@ -92,6 +92,15 @@
     transform: scale(0.98);
 }
 
+.verifyAlert{
+    color: var(--alert);
+    margin-bottom: 1em;
+}
+.verifyButton{
+    background-color: var(--alert);
+    color: black;
+}
+
 @media (max-width:1366px){
     .userInfoContainer{
         font-size: .8em;

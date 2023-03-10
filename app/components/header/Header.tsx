@@ -54,13 +54,9 @@ export default function Header(){
 
     return(
         <>
-            {onMenu ? 
-                <MenuDisplay closeAnimation={closeAnimation} closeMenu={closeMenu}/>
-            : ''}
+            {onMenu && <MenuDisplay closeAnimation={closeAnimation} closeMenu={closeMenu}/>}
 
-            {onMenu ? 
-                <div className={styles.blackScreen} onClick={closeMenu} ></div>
-            : ''}
+            {onMenu && <div className={styles.blackScreen} onClick={closeMenu} ></div>}
 
             <div className={`${styles.header} ${scroll ? `${styles.scrollContainer}` : ''}`}>
                 <Link href='/' className={styles.iconContainer}>

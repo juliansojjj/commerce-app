@@ -10,6 +10,7 @@ import MenuCart from '../cart/MenuCart';
 import ShoppingCart from '@mui/icons-material/ShoppingCartOutlined';
 import AccountIcon from '@mui/icons-material/AccountCircle';
 import CloseIcon from '@mui/icons-material/CloseRounded';
+import TuneIcon from '@mui/icons-material/TuneRounded';
 import { useCartContext } from '../../Context/cart/CartStore';
 import clsx from 'clsx';
 import { Be_Vietnam_Pro } from '@next/font/google';
@@ -28,11 +29,13 @@ export default function Menu({closeAnimation, closeMenu}:{closeAnimation:any, cl
         <div className={`${styles.container} ${closeAnimation ? styles.menuClosed : ''}`}>
             <div className={styles.closeButtonContainer}> <CloseIcon onClick={closeMenu}/> </div>
             
+
             <Link href='/shop' onClick={closeMenu} className={styles.responsiveShopContainer}>
                 <ShopIcon/>
                 <h4 className={styles.title}>Ir a la tienda</h4>
             </Link> 
             
+
             {user 
             ?   <Link href='/profile' className={styles.menuCategory}>
                     <AccountIcon />
@@ -45,6 +48,12 @@ export default function Menu({closeAnimation, closeMenu}:{closeAnimation:any, cl
                 </Link>
             }
                 
+            {user?.role == 'admin' &&
+            <Link href='/dashboard' onClick={closeMenu} className={styles.menuCategory}>
+                <TuneIcon/>
+                <h4 className={styles.title}>Dashboard</h4>
+            </Link> }
+            
                 <div className={styles.menuCategory}>
                     <ShoppingCart/>
                     <h4 className={styles.title}>Carrito de compras</h4>

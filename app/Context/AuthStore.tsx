@@ -34,9 +34,9 @@ export const AuthContextProvider = ({ children }:Children) => {
     }
 
     useEffect(()=>{
+        console.log(data)
         if(status === 'authenticated'){
             dispatch({type:'Login', payload:data.user as User})
-            console.log(data)
         }
     },[status])
 
