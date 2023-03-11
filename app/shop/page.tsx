@@ -1,23 +1,52 @@
+"use client"
+
 import styles from "./shop.module.css";
 import Link from "next/link";
 import ProductCard from "../components/productCard/ProductCard";
 import FavoriteButton from "../components/product/FavoriteButton";
+import useSWR from 'swr';
+import { useState } from 'react';
+import CancelIcon from '@mui/icons-material/CancelRounded';
+import { Be_Vietnam_Pro } from "@next/font/google";
+import clsx from 'clsx';
 
+const vietnamPro = Be_Vietnam_Pro({ weight: "400" });
 
-const fetchProducts = async () => {
-  const res = await fetch("http://localhost:8000/api/products", {
+const fetchProducts = async (url:string) => fetch(url, {
     next: { revalidate: 120 },
-  });
+  })
+  .then(res=>res.json())
+  .then(info=>{
+    if(info.product) return info.product
+    else return info
+  })
 
-  return res.json();
-};
-
-export default async function Shop() {
+export default function Shop() {
+  const [link, setLink] = useState(`http://localhost:8000/api/products/`)
+  const [searchInput,setSearchInput] = useState('')
   const repo: any[] = [];
-  const data = await fetchProducts();
-  const array = data.sort((a:any, b:any) => a.serialNumber - b.serialNumber);
+  const {data, mutate} = useSWR(link,fetchProducts)
+  const array = data?.length > 0 ? data.sort((a:any, b:any) => a.serialNumber - b.serialNumber) : [];
 
-  array.forEach((item: any, i:number, arr:any) => {
+  const handleSearch = async(e:any)=>{
+    if(!e.target?.value.trim()) {
+      setSearchInput('')
+      mutate(setLink(`http://localhost:8000/api/products/`))
+    }else {
+      setSearchInput(e.target.value)
+      mutate(setLink(`http://localhost:8000/api/products/search/${e.target.value.trim().toLowerCase()}`))
+  }
+  }
+
+  const handleDelete = ()=>{
+    if(!searchInput) return
+    else{
+      setSearchInput('')
+      mutate(setLink(`http://localhost:8000/api/products/`))
+  }}
+
+  if(array.length > 1){
+  array?.forEach((item: any, i:number, arr:any) => {
     const repeat: any[] = [];
     //si es primero de array y primero repe
     if (i == 0 && item.serialNumber == arr[i + 1].serialNumber) {
@@ -67,15 +96,36 @@ export default async function Shop() {
     } else {
       repo.push(item);
     }
-  });
-  
+  })
+}
+else if(array.length == 1){
+  repo.push(array[0])
+}
+console.log(repo)
   return (
-    <div className={styles.shopContainer}>
-      {repo.map((item) => {
-          return (
-            <ProductCard repeat={item.rep} data={item.rep ? item.repeat : item}/>
-          )
-      })}
+    <div className={styles.shopLayout}>
+      <div className={styles.dashboardContainer}>
+            <div>Filtro 1</div>
+            <div className={styles.searchInputContainercontainer}>
+            <input 
+            type="text"  
+            className={clsx(styles.searchInput, vietnamPro.className)}
+            placeholder='Buscar productos'
+            onChange={handleSearch}
+            value={searchInput}
+            />
+            <CancelIcon onClick={handleDelete} className={styles.cancelBtn}/>
+        </div >
+            <div>Filtro 2</div>
+        </div>
+        {repo.length == 0 && <h5>No hay resultados para tu búsqueda</h5>}
+        <div className={styles.shopContainer}>
+        {repo && repo?.map((item) => {
+            return (
+              <ProductCard repeat={item.rep} data={item.rep ? item.repeat : item}/>
+            )
+        })}
+      </div>
     </div>
   );
 }
