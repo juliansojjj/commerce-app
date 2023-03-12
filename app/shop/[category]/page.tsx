@@ -1,9 +1,8 @@
 "use client"
 
-import styles from "./shop.module.css";
+import styles from "../shop.module.css";
 import Link from "next/link";
-import ProductCard from "../components/productCard/ProductCard";
-import FavoriteButton from "../components/product/FavoriteButton";
+import ProductCard from "../../components/productCard/ProductCard";
 import useSWR from 'swr';
 import { ChangeEvent, useRef, useState, useEffect } from 'react';
 import CancelIcon from '@mui/icons-material/CancelRounded';
@@ -21,8 +20,11 @@ const fetchProducts = async (url:string) => fetch(url, {
     else return info
   })
 
-export default function Shop() {
-  const [link, setLink] = useState(`http://localhost:8000/api/products/`)
+export default function Category({params}: {
+  params: { category: string };
+  searchParams: { [key: string]: string  };
+}) {
+  const [link, setLink] = useState(`http://localhost:8000/api/products/category/${params.category}`)
   const [searchInput,setSearchInput] = useState('')
   const [orderFilter, setOrderFilter] = useState<'mayorPrice'|'minorPrice'|'mostSold'>('mostSold')
   const debounceRef = useRef<NodeJS.Timeout>()
@@ -40,9 +42,9 @@ export default function Shop() {
 
     debounceRef.current = setTimeout(() => {
       if(!e.target?.value.trim()) {
-        mutate(setLink(`http://localhost:8000/api/products/`))
+        mutate(setLink(`http://localhost:8000/api/products/category/${params.category}`))
       }else {
-        mutate(setLink(`http://localhost:8000/api/products/search/${e.target.value.trim().toLowerCase()}`))
+        mutate(setLink(`http://localhost:8000/api/products/category/search/${params.category}---${e.target.value.trim().toLowerCase()}`))
     }
     }, 500);
   }
@@ -51,7 +53,7 @@ export default function Shop() {
     if(!searchInput) return
     else{
       setSearchInput('')
-      mutate(setLink(`http://localhost:8000/api/products/`))
+      mutate(setLink(`http://localhost:8000/api/products/category/${params.category}`))
   }}
 
   if(array.length > 1){
@@ -141,14 +143,18 @@ if(repo.length > 1){
             <input 
             type="text"  
             className={clsx(styles.searchInput, vietnamPro.className)}
-            placeholder='Buscar productos'
+            placeholder={`Buscar productos dentro de ${params.category}`}
             onChange={handleSearch}
             value={searchInput}
             />
             <CancelIcon onClick={handleDelete} className={styles.cancelBtn}/>
         </div >
         </div>
-        {repo.length == 0 && <h5>No hay resultados para tu búsqueda</h5>}
+        {repo.length == 0 && 
+        <div>
+          <h5>No hay resultados para tu búsqueda</h5>
+          <Link href='/shop'>Volver a ver todos los productos</Link>  
+        </div>}
         <div className={styles.shopContainer}>
         {repo?.map((item) => {
             return (
